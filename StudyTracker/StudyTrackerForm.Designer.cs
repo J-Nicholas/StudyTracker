@@ -28,44 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.startImage = new System.Windows.Forms.PictureBox();
             this.startSessionButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // startImage
             // 
-            this.pictureBox1.Image = global::StudyTracker.Properties.Resources.PlayButton;
-            this.pictureBox1.Location = new System.Drawing.Point(98, 75);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(252, 182);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.startButton_Click);
+            this.startImage.BackColor = System.Drawing.Color.Transparent;
+            this.startImage.Image = global::StudyTracker.Properties.Resources.PlayButton;
+            this.startImage.Location = new System.Drawing.Point(74, 61);
+            this.startImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.startImage.Name = "startImage";
+            this.startImage.Size = new System.Drawing.Size(189, 148);
+            this.startImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.startImage.TabIndex = 5;
+            this.startImage.TabStop = false;
+            this.startImage.Click += new System.EventHandler(this.startButton_Click);
             // 
             // startSessionButton
             // 
-            this.startSessionButton.Location = new System.Drawing.Point(145, 275);
+            this.startSessionButton.BackgroundImage = global::StudyTracker.Properties.Resources.MenuStrip;
+            this.startSessionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.startSessionButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.startSessionButton.Location = new System.Drawing.Point(109, 223);
+            this.startSessionButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.startSessionButton.Name = "startSessionButton";
-            this.startSessionButton.Size = new System.Drawing.Size(158, 35);
+            this.startSessionButton.Size = new System.Drawing.Size(118, 28);
             this.startSessionButton.TabIndex = 6;
             this.startSessionButton.Text = "Start new session";
             this.startSessionButton.UseVisualStyleBackColor = true;
             this.startSessionButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // StudyTracker
+            // StudyTrackerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 386);
+            this.ClientSize = new System.Drawing.Size(254, 305);
             this.Controls.Add(this.startSessionButton);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "StudyTracker";
+            this.Controls.Add(this.startImage);
+            this.MaximumSize = new System.Drawing.Size(270, 344);
+            this.MinimumSize = new System.Drawing.Size(270, 297);
+            this.Name = "StudyTrackerForm";
             this.Text = "Study Tracker";
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.startImage, 0);
             this.Controls.SetChildIndex(this.startSessionButton, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -73,7 +81,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox startImage;
         private System.Windows.Forms.Button startSessionButton;
     }
 }

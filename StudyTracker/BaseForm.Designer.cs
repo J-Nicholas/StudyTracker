@@ -42,6 +42,8 @@
             // mainMenuStrip
             // 
             this.mainMenuStrip.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.mainMenuStrip.BackgroundImage = global::StudyTracker.Properties.Resources.MenuStrip;
+            this.mainMenuStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mainMenuStrip.ImageScalingSize = new System.Drawing.Size(19, 19);
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileStripMenu,
@@ -49,7 +51,8 @@
             this.viewToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(449, 28);
+            this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.mainMenuStrip.Size = new System.Drawing.Size(338, 24);
             this.mainMenuStrip.TabIndex = 4;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
@@ -58,20 +61,20 @@
             this.fileStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitApplicationStrip});
             this.fileStripMenu.Name = "fileStripMenu";
-            this.fileStripMenu.Size = new System.Drawing.Size(44, 24);
+            this.fileStripMenu.Size = new System.Drawing.Size(37, 20);
             this.fileStripMenu.Text = "&File";
             // 
             // exitApplicationStrip
             // 
             this.exitApplicationStrip.Name = "exitApplicationStrip";
-            this.exitApplicationStrip.Size = new System.Drawing.Size(209, 26);
+            this.exitApplicationStrip.Size = new System.Drawing.Size(156, 22);
             this.exitApplicationStrip.Text = "Exit Application";
             this.exitApplicationStrip.Click += new System.EventHandler(this.exitApplicationStrip_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(47, 24);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(39, 20);
             this.toolStripMenuItem3.Text = "&Edit";
             // 
             // viewToolStripMenuItem
@@ -80,32 +83,36 @@
             this.mainMenuToolStripMenuItem,
             this.sessionSetupToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // mainMenuToolStripMenuItem
             // 
             this.mainMenuToolStripMenuItem.Name = "mainMenuToolStripMenuItem";
-            this.mainMenuToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
-            this.mainMenuToolStripMenuItem.Text = "Main Menu";
+            this.mainMenuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mainMenuToolStripMenuItem.Text = "Topic to Description";
+            this.mainMenuToolStripMenuItem.Click += new System.EventHandler(this.mainMenuToolStripMenuItem_Click);
             // 
             // sessionSetupToolStripMenuItem
             // 
             this.sessionSetupToolStripMenuItem.Name = "sessionSetupToolStripMenuItem";
-            this.sessionSetupToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
+            this.sessionSetupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sessionSetupToolStripMenuItem.Text = "Session Setup";
             // 
             // BaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(449, 386);
+            this.BackgroundImage = global::StudyTracker.Properties.Resources.Abstract_Black_BkGrnd;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(338, 318);
             this.Controls.Add(this.mainMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(467, 500);
-            this.MinimumSize = new System.Drawing.Size(467, 431);
+            this.MaximumSize = new System.Drawing.Size(354, 357);
+            this.MinimumSize = new System.Drawing.Size(354, 357);
             this.Name = "BaseForm";
             this.Text = "StudyTrackerForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BaseForm_FormClosed);

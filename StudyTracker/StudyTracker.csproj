@@ -11,6 +11,23 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +52,12 @@
     <ApplicationIcon>Resources\study_icon_gR3_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Costura, Version=3.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.3.1.0\lib\net46\Costura.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,12 +73,20 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SessionManager.Designer.cs">
+      <DependentUpon>SessionManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="SessionSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SessionSetupForm.Designer.cs">
       <DependentUpon>SessionSetupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudyDir.cs" />
+    <Compile Include="StudyLog.cs" />
     <Compile Include="StudyTrackerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +109,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SessionManager.resx">
+      <DependentUpon>SessionManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SessionSetupForm.resx">
       <DependentUpon>SessionSetupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +121,7 @@
     <EmbeddedResource Include="StudyTrackerForm.resx">
       <DependentUpon>StudyTrackerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,10 +136,50 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\DIGITALDREAMFATSKEW.ttf" />
     <None Include="Resources\PlayButton.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\study_icon_gR3_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Abstract_Blue_BkGrnd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Abstract_Black_BkGrnd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuStrip.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClockTimer_Green.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClockTimer_Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Abstract_Blue_BkGrnd_Bright.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.3.1.4\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.3.1.4\build\Fody.targets'))" />
+  </Target>
+  <Import Project="..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" />
+  <Import Project="..\packages\Fody.3.1.4\build\Fody.targets" Condition="Exists('..\packages\Fody.3.1.4\build\Fody.targets')" />
 </Project>

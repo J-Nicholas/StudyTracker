@@ -63,6 +63,76 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Abstract_Black_BkGrnd {
+            get {
+                object obj = ResourceManager.GetObject("Abstract_Black_BkGrnd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Abstract_Blue_BkGrnd {
+            get {
+                object obj = ResourceManager.GetObject("Abstract_Blue_BkGrnd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Abstract_Blue_BkGrnd_Bright {
+            get {
+                object obj = ResourceManager.GetObject("Abstract_Blue_BkGrnd_Bright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ClockTimer_Green {
+            get {
+                object obj = ResourceManager.GetObject("ClockTimer_Green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ClockTimer_Red {
+            get {
+                object obj = ResourceManager.GetObject("ClockTimer_Red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DIGITALDREAMFATSKEW {
+            get {
+                object obj = ResourceManager.GetObject("DIGITALDREAMFATSKEW", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MenuStrip {
+            get {
+                object obj = ResourceManager.GetObject("MenuStrip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PlayButton {
             get {
                 object obj = ResourceManager.GetObject("PlayButton", resourceCulture);

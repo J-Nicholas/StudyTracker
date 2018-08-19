@@ -26,5 +26,10 @@ namespace StudyTracker
         {
             Application.Exit();
         }
+
+        private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
