@@ -172,6 +172,54 @@
   <ItemGroup>
     <None Include="Resources\Abstract_Blue_BkGrnd_Bright.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimise.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimise Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SideBar_Book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StudyTrackerTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SideBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonSelectedf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitButtonSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Min_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SessionStartButtonSelectedf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form Background_Alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Session Manager Window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Recent Logs.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

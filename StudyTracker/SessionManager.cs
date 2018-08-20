@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Text;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace StudyTracker
 {
@@ -37,16 +39,29 @@ namespace StudyTracker
         #endregion
 
         private TimeSpan timeElapsed;
-        private static Stopwatch stopWatch = new Stopwatch();
+        public static Stopwatch stopWatch = new Stopwatch();
         private static StudyLog studyLogRef;
+        public static Label startButtonLabelRef;
+        public static PictureBox startImageRef;
         private static SessionManagerForm sessionManagerRef;
         private bool shouldPause = false;
 
         private SessionManagerForm()
         {
             InitializeComponent();
-            FontSetup();
-
+            startButtonLabelRef = StartLabelBaseRef;
+            startImageRef = StartImageRef;
+        }
+        public static PictureBox SessionManStartImageRef
+        {
+            get
+            {
+                if (startImageRef == null)
+                {
+                    startImageRef = BaseForm.StartImageRef;
+                }
+                return StartImageRef;
+            }
         }
         public static StudyLog StudyLogRef
         {
@@ -74,7 +89,7 @@ namespace StudyTracker
                 return sessionManagerRef;
             }
         }
-        private void ReCenterTimerLabel ()
+        private void ReCenterTimerLabel()
         {
             timerLabel.Location = new Point(
                 (ClockImage.Size.Width - timerLabel.Width) / 2,
@@ -82,17 +97,19 @@ namespace StudyTracker
         }
         private void SessionManagerForm_Load(object sender, EventArgs e)
         {
-            stopWatch.Start();
-            topicLabel.Text = $"{StudyLogRef.Topic} for:";
-            timerLabel.Font = clockFont;
             timerLabel.Parent = ClockImage;
-            timerLabel.ForeColor = Color.LawnGreen;
+            timerLabel.ForeColor = Color.FromArgb(120, 150, 170);
+
             ReCenterTimerLabel();
         }
 
         private void timeElapsedTimer_Tick(object sender, EventArgs e)
         {
-            topicLabel.Left = (this.ClientSize.Width - topicLabel.Width) / 2;
+            if (Debugger.IsAttached)
+            {
+                timeElapsedTimer.Enabled = false;
+                return;
+            }
 
             // Handle outputting time elapsed to label if button is not paused
             if (shouldPause == false)
@@ -114,8 +131,6 @@ namespace StudyTracker
                     timerLabel.Text = timeElapsed.ToString("hh':'mm':'ss'.'f");
                 }
             }
-
-
         }
 
         private void pauseButton_Click(object sender, EventArgs e)
@@ -125,24 +140,65 @@ namespace StudyTracker
             {
                 stopWatch.Stop();
                 pauseButton.Text = "RESUME";
-                timerLabel.ForeColor = Color.Red;
-                ClockImage.Image = Properties.Resources.ClockTimer_Red;
+                timerLabel.ForeColor = Color.Firebrick;
             }
             else
             {
                 stopWatch.Start();
                 pauseButton.Text = "PAUSE";
-                timerLabel.ForeColor = Color.LawnGreen;
-                ClockImage.Image = Properties.Resources.ClockTimer_Green;
+                timerLabel.ForeColor = Color.FromArgb(120, 150, 170);
+            }
+        }
+
+        private void SessionManagerForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible == false)
+            {
+                stopWatch.Reset();
+                timeElapsed = TimeSpan.MinValue;
+                topicLabel.Text = string.Empty;
+                if (shouldPause)
+                {
+                    shouldPause = false;
+                    pauseButton.Text = "PAUSE";
+                    timerLabel.ForeColor = Color.FromArgb(120, 150, 170);
+                }
+            }
+            else
+            {
+                stopWatch.Start();
+                topicLabel.Text = $"{StudyLogRef.Topic} for:";
+                topicLabel.Parent = WindowPanel;
+                topicLabel.Location = new Point((WindowPanel.Width - topicLabel.Width) / 2, topicLabel.Location.Y);
 
             }
         }
 
         private void finishButton_Click(object sender, EventArgs e)
         {
+            stopWatch.Stop();
+            // Add End Time, End Date, Total time spent
+            StudyLogRef.TimeStudied = timeElapsed;
+            StudyLogRef.EndDate = DateTime.Now;
+            StudyLogRef.EndTime = DateTime.Now;
 
+
+            // Writing log to Json file
+            string jsonOutput = JsonConvert.SerializeObject(StudyLogRef, Formatting.Indented);
+            JsonSerializer serializer = new JsonSerializer();
+
+            try
+            {
+                using (var sw = new StreamWriter(StudyDir.logsDir, true))
+                using (var jsonWriter = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(jsonWriter, jsonOutput);
+                }
+            }
+            catch (IOException error)
+            {
+                MessageBox.Show("Could not write to log file.\n" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-
     }
 }

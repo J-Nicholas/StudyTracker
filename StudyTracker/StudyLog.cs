@@ -14,6 +14,7 @@ namespace StudyTracker
         private DateTime endTime;
         private DateTime startDate;
         private DateTime endDate;
+        private TimeSpan timeStudied;
         public string Description { get; set; }
 
         public StudyLog()
@@ -101,7 +102,20 @@ namespace StudyTracker
                 }
             }
         }
-
+        public TimeSpan TimeStudied
+        {
+            get
+            {
+                return timeStudied;
+            }
+            set
+            {
+                if (value > TimeSpan.MinValue)
+                {
+                    timeStudied = value;
+                }
+            }
+        }
 
     }
 }

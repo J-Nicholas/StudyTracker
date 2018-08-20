@@ -14,12 +14,14 @@ namespace StudyTracker
     public partial class StudyTrackerForm : BaseForm
     {
         private static StudyTrackerForm studyTracker;   // reference to this form that can be accessed by property 
+        private static Label startButtonLabel;
 
         public StudyTrackerForm()
         {
             InitializeComponent();
-            studyTracker = this;                        // lining current form to reference 
             CenterWindow();
+            studyTracker = this;
+            startButtonLabel = StartLabelBaseRef;
         }
 
         public static StudyTrackerForm StudyTracker
@@ -34,6 +36,16 @@ namespace StudyTracker
                 return studyTracker;
             }
         }
+        public static Label StartButtonLabel
+        {
+            get
+            {
+                if (startButtonLabel == null)
+                    startButtonLabel = new Label();
+                return startButtonLabel;
+            }
+        }
+            
         private void CenterWindow ()
         {
             Rectangle screen = GetScreenSize();
@@ -50,10 +62,7 @@ namespace StudyTracker
         }
         private void startButton_Click(object sender, EventArgs e)
         {
-            SessionSetupForm.SessionSetup.Show();
-            SessionSetupForm.SessionSetup.Location = StudyTracker.Location;
-            SessionSetupForm.SessionSetup.Focus();
-            StudyTracker.Hide();
+            
         }
     }
 }

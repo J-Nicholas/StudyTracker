@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace StudyTracker
 {
@@ -17,17 +18,23 @@ namespace StudyTracker
         private static SessionSetupForm sessionSetup = null;
         private FileStream file;
         private List<string> topicsFromFile = new List<string>();
-
+        private static Label sidebarLabelRef = null;
+        
         public SessionSetupForm()
         {
             InitializeComponent();
-            MessageBox.Show($"Base width = {base.ToString()}\nSession Setup Width: {this.Width}");
-            this.MaximumSize = base.MaximumSize;
-            this.Size = new Size(base.Width, base.Height);
-
-
         }
-
+        public static Label SidebarLabelRef
+        {
+            get
+            {
+                if (sidebarLabelRef == null)
+                {
+                    sidebarLabelRef = StartLabelBaseRef;
+                }
+                return sidebarLabelRef;
+            }
+        }
         public static SessionSetupForm SessionSetup
         {
             //form singleton, only allows one instance of a form and allows access to it from other classes
@@ -100,20 +107,24 @@ namespace StudyTracker
 
             RemoveDuplicatesFromFile(StudyDir.TopicDir);
             GetTopicsFromFile();
+            SetupPanel.Parent = SessionSetup;
 
-            dateBox.Text = DateTime.Today.ToShortDateString();
-            timeBox.Text = DateTime.Now.ToLongTimeString();
+           
         }
         private void currentTimeTimer_Tick(object sender, EventArgs e)
         {
             //updates once a second i.e. 1000ms tick
-            timeBox.Text = DateTime.Now.ToLongTimeString();
+            if (Debugger.IsAttached)
+            {
+                currentTimeTimer.Enabled = false;
+            }
+                timeBox.Text = DateTime.Now.ToLongTimeString();
         }
         private void backButton_Click(object sender, EventArgs e)
         {
-            StudyTrackerForm.StudyTracker.Location = sessionSetup.Location;
-            StudyTrackerForm.StudyTracker.Show();
-            SessionSetup.Hide();
+            //StudyTrackerForm.StudyTracker.Location = SessionSetup.Location;
+            //StudyTrackerForm.StudyTracker.Show();
+            //SessionSetup.Hide();
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -209,20 +220,20 @@ namespace StudyTracker
             if (topicComboBox.Items.Contains(text))                     // catches match when topic was typed in
             {                                                           // has added \r\n to what was typed in to box
                 deleteButton.Enabled = true;
-                deleteButton.BackgroundImage = Properties.Resources.MenuStrip;
-                deleteButton.FlatStyle = FlatStyle.Popup;
+                deleteButton.BackColor = Color.FromArgb(60, 80, 95);
+                //deleteButton.FlatStyle = FlatStyle.Popup;
             }
             else if (topicComboBox.Items.Contains(topicComboBox.Text))  // catches match when topic was selected
             {                                                           // don't add \r\n because when topic is selected, it already has \r\n
                 deleteButton.Enabled = true;                            // because it is fetched from items collecction
-                deleteButton.BackgroundImage = Properties.Resources.MenuStrip;
-                deleteButton.FlatStyle = FlatStyle.Popup;
+                deleteButton.BackColor = Color.FromArgb(60, 80, 95);
+                //deleteButton.FlatStyle = FlatStyle.Popup;
             }
             else
             {
                 deleteButton.Enabled = false;
                 deleteButton.BackgroundImage = null;
-                deleteButton.BackColor = Color.DimGray;
+                deleteButton.BackColor = Color.FromArgb(100, 130, 150);    //medium blue, used for start button, save button and delete.
             }
 
         }
@@ -279,21 +290,42 @@ namespace StudyTracker
                 // Pass log to Session Manager
                 SessionManagerForm.StudyLogRef = log;
 
-                string jsonOutput = JsonConvert.SerializeObject(log, Formatting.Indented);
-                JsonSerializer serializer = new JsonSerializer();
-
-                using (var sw = new StreamWriter(StudyDir.logsDir, true))
-                {
-                    using (var jsonWriter = new JsonTextWriter(sw))
-                    {
-                        serializer.Serialize(jsonWriter, jsonOutput);
-                    }
-                }
+                
+                this.Hide();
                 SessionManagerForm.SessionManagerRef.Show();
                 SessionManagerForm.SessionManagerRef.Location = this.Location;
-                this.Hide();
-
+                SessionManagerForm.SessionManagerRef.Focus();
+                SessionManagerForm.startButtonLabelRef.Text = "Home";
+                SessionManagerForm.startButtonLabelRef.Location = new Point(            //centre Home in image box
+                        (SessionManagerForm.startImageRef.Width - SessionManagerForm.startButtonLabelRef.Width) / 2,
+                    SessionManagerForm.startButtonLabelRef.Location.Y);
             }
+        }
+
+        private void SessionSetupForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible.Equals(true))
+            {
+                dateBox.Text = DateTime.Today.ToShortDateString();
+                timeBox.Text = DateTime.Now.ToLongTimeString();
+            }
+            else
+            {
+                topicComboBox.Text = string.Empty;
+                descriptionBox.Text = string.Empty;
+            }
+        }
+
+        private void startButton_MouseEnter(object sender, EventArgs e)
+        {
+            startButton.BackgroundImage = Properties.Resources.SessionStartButtonSelectedf;
+            //startButton.BackgroundImageLayout = ImageLayout.Stretch;
+            
+        }
+
+        private void startButton_MouseLeave(object sender, EventArgs e)
+        {
+            startButton.BackgroundImage = null;
         }
     }
 }

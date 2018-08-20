@@ -28,60 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.startImage = new System.Windows.Forms.PictureBox();
-            this.startSessionButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.startImage)).BeginInit();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // startImage
+            // panel1
             // 
-            this.startImage.BackColor = System.Drawing.Color.Transparent;
-            this.startImage.Image = global::StudyTracker.Properties.Resources.PlayButton;
-            this.startImage.Location = new System.Drawing.Point(74, 61);
-            this.startImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.startImage.Name = "startImage";
-            this.startImage.Size = new System.Drawing.Size(189, 148);
-            this.startImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.startImage.TabIndex = 5;
-            this.startImage.TabStop = false;
-            this.startImage.Click += new System.EventHandler(this.startButton_Click);
+            this.panel1.BackgroundImage = global::StudyTracker.Properties.Resources.Recent_Logs;
+            this.panel1.Location = new System.Drawing.Point(259, 165);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(365, 100);
+            this.panel1.TabIndex = 18;
             // 
-            // startSessionButton
+            // panel2
             // 
-            this.startSessionButton.BackgroundImage = global::StudyTracker.Properties.Resources.MenuStrip;
-            this.startSessionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.startSessionButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.startSessionButton.Location = new System.Drawing.Point(109, 223);
-            this.startSessionButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.startSessionButton.Name = "startSessionButton";
-            this.startSessionButton.Size = new System.Drawing.Size(118, 28);
-            this.startSessionButton.TabIndex = 6;
-            this.startSessionButton.Text = "Start new session";
-            this.startSessionButton.UseVisualStyleBackColor = true;
-            this.startSessionButton.Click += new System.EventHandler(this.startButton_Click);
+            this.panel2.BackgroundImage = global::StudyTracker.Properties.Resources.Recent_Logs;
+            this.panel2.Location = new System.Drawing.Point(259, 300);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(365, 100);
+            this.panel2.TabIndex = 19;
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::StudyTracker.Properties.Resources.Recent_Logs;
+            this.panel3.Location = new System.Drawing.Point(259, 435);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(365, 100);
+            this.panel3.TabIndex = 19;
             // 
             // StudyTrackerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 305);
-            this.Controls.Add(this.startSessionButton);
-            this.Controls.Add(this.startImage);
-            this.MaximumSize = new System.Drawing.Size(270, 344);
-            this.MinimumSize = new System.Drawing.Size(270, 297);
+            this.ClientSize = new System.Drawing.Size(700, 700);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "StudyTrackerForm";
             this.Text = "Study Tracker";
-            this.Controls.SetChildIndex(this.startImage, 0);
-            this.Controls.SetChildIndex(this.startSessionButton, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.startImage)).EndInit();
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.panel2, 0);
+            this.Controls.SetChildIndex(this.panel3, 0);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox startImage;
-        private System.Windows.Forms.Button startSessionButton;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

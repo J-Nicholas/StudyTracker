@@ -63,9 +63,9 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Abstract_Black_BkGrnd {
+        internal static System.Drawing.Bitmap ButtonSelected {
             get {
-                object obj = ResourceManager.GetObject("Abstract_Black_BkGrnd", resourceCulture);
+                object obj = ResourceManager.GetObject("ButtonSelected", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Abstract_Blue_BkGrnd {
+        internal static System.Drawing.Bitmap Close_hover {
             get {
-                object obj = ResourceManager.GetObject("Abstract_Blue_BkGrnd", resourceCulture);
+                object obj = ResourceManager.GetObject("Close_hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,29 +83,9 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Abstract_Blue_BkGrnd_Bright {
+        internal static System.Drawing.Bitmap Close_Icon {
             get {
-                object obj = ResourceManager.GetObject("Abstract_Blue_BkGrnd_Bright", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ClockTimer_Green {
-            get {
-                object obj = ResourceManager.GetObject("ClockTimer_Green", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ClockTimer_Red {
-            get {
-                object obj = ResourceManager.GetObject("ClockTimer_Red", resourceCulture);
+                object obj = ResourceManager.GetObject("Close_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +103,9 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MenuStrip {
+        internal static System.Drawing.Bitmap ExitButtonSelected {
             get {
-                object obj = ResourceManager.GetObject("MenuStrip", resourceCulture);
+                object obj = ResourceManager.GetObject("ExitButtonSelected", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +113,99 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap PlayButton {
+        internal static System.Drawing.Bitmap Form_Background {
             get {
-                object obj = ResourceManager.GetObject("PlayButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Form_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Form_Background_Alt {
+            get {
+                object obj = ResourceManager.GetObject("Form_Background_Alt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Min_hover {
+            get {
+                object obj = ResourceManager.GetObject("Min_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Minimise_Icon {
+            get {
+                object obj = ResourceManager.GetObject("Minimise_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Recent_Logs {
+            get {
+                object obj = ResourceManager.GetObject("Recent Logs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Recent_Logs_none {
+            get {
+                object obj = ResourceManager.GetObject("Recent Logs_none", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Session_Manager_Window {
+            get {
+                object obj = ResourceManager.GetObject("Session_Manager_Window", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SessionStartButtonSelectedf {
+            get {
+                object obj = ResourceManager.GetObject("SessionStartButtonSelectedf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SideBar {
+            get {
+                object obj = ResourceManager.GetObject("SideBar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SideBar_Book {
+            get {
+                object obj = ResourceManager.GetObject("SideBar_Book", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -147,6 +217,16 @@ namespace StudyTracker.Properties {
             get {
                 object obj = ResourceManager.GetObject("study_icon_gR3_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StudyTrackerTitle {
+            get {
+                object obj = ResourceManager.GetObject("StudyTrackerTitle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
