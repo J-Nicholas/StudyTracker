@@ -31,7 +31,7 @@ namespace StudyTracker
         {
             InitializeComponent();
             baseFormRef = this;
-            DoubleBuffered = true;
+            this.DoubleBuffered = true;
 
             SideBar_BookImage.Parent = SidebarImage;
             Sidebar_TitleImage.Parent = SidebarImage;

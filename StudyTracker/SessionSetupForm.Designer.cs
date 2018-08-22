@@ -61,14 +61,14 @@
             // timeBox
             // 
             this.timeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(230)))));
-            this.timeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.timeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.timeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.timeBox.Location = new System.Drawing.Point(164, 160);
+            this.timeBox.Location = new System.Drawing.Point(164, 162);
             this.timeBox.Margin = new System.Windows.Forms.Padding(2);
             this.timeBox.Name = "timeBox";
             this.timeBox.ReadOnly = true;
-            this.timeBox.Size = new System.Drawing.Size(88, 23);
+            this.timeBox.Size = new System.Drawing.Size(88, 16);
             this.timeBox.TabIndex = 10;
             this.timeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -137,14 +137,14 @@
             // dateBox
             // 
             this.dateBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(230)))));
-            this.dateBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dateBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dateBox.Location = new System.Drawing.Point(164, 220);
+            this.dateBox.Location = new System.Drawing.Point(164, 222);
             this.dateBox.Margin = new System.Windows.Forms.Padding(2);
             this.dateBox.Name = "dateBox";
             this.dateBox.ReadOnly = true;
-            this.dateBox.Size = new System.Drawing.Size(88, 23);
+            this.dateBox.Size = new System.Drawing.Size(88, 16);
             this.dateBox.TabIndex = 12;
             this.dateBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -164,6 +164,7 @@
             // topicComboBox
             // 
             this.topicComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(230)))));
+            this.topicComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.topicComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topicComboBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.topicComboBox.FormattingEnabled = true;
@@ -253,17 +254,17 @@
 
         #endregion
         private System.Windows.Forms.Label timeLabel;
-        private System.Windows.Forms.TextBox timeBox;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.RichTextBox descriptionBox;
         private System.Windows.Forms.Timer currentTimeTimer;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label dateLabel;
-        private System.Windows.Forms.TextBox dateBox;
         private System.Windows.Forms.Label topicLabel;
         private System.Windows.Forms.ComboBox topicComboBox;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Panel SetupPanel;
+        private System.Windows.Forms.TextBox timeBox;
+        private System.Windows.Forms.TextBox dateBox;
     }
 }

@@ -91,12 +91,32 @@ namespace StudyTracker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeleteLogButton {
+            get {
+                object obj = ResourceManager.GetObject("DeleteLogButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] DIGITALDREAMFATSKEW {
             get {
                 object obj = ResourceManager.GetObject("DIGITALDREAMFATSKEW", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EditButton {
+            get {
+                object obj = ResourceManager.GetObject("EditButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

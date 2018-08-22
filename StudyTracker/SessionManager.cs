@@ -178,27 +178,49 @@ namespace StudyTracker
         {
             stopWatch.Stop();
             // Add End Time, End Date, Total time spent
-            StudyLogRef.TimeStudied = timeElapsed;
-            StudyLogRef.EndDate = DateTime.Now;
-            StudyLogRef.EndTime = DateTime.Now;
+
+            // Highlights the newest entry in the list of recent logs
+            StudyTrackerForm.AddedNewEntry = true;
+            StudyTrackerForm.StudyTracker.HighlightLatest = true;
+
 
 
             // Writing log to Json file
-            string jsonOutput = JsonConvert.SerializeObject(StudyLogRef, Formatting.Indented);
-            JsonSerializer serializer = new JsonSerializer();
+            //string jsonOutput = JsonConvert.SerializeObject(StudyLogRef);
+            //JsonSerializer serializer = new JsonSerializer();
 
             try
             {
-                using (var sw = new StreamWriter(StudyDir.logsDir, true))
-                using (var jsonWriter = new JsonTextWriter(sw))
+                if (!File.Exists(StudyDir.logsDir))
                 {
-                    serializer.Serialize(jsonWriter, jsonOutput);
+                    using (File.Create(StudyDir.logsDir)) { };
                 }
+                var jsonData = File.ReadAllText(StudyDir.logsDir);
+                var logList = JsonConvert.DeserializeObject<List<StudyLog>>(jsonData)
+                    ?? new List<StudyLog>();
+
+                StudyLogRef.TimeStudied = timeElapsed;
+                StudyLogRef.EndDate = DateTime.Now;
+                StudyLogRef.EndTime = DateTime.Now;
+
+                logList.Add(StudyLogRef);
+
+
+                jsonData = JsonConvert.SerializeObject(logList);
+                File.WriteAllText(StudyDir.logsDir, jsonData);
+
             }
             catch (IOException error)
             {
                 MessageBox.Show("Could not write to log file.\n" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            MessageBox.Show("Well done!\nYour study session has been saved!", "Well Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            StudyTrackerForm.StudyTracker.Show();
+            SessionManagerRef.Hide();
+            StudyTrackerForm.StudyTracker.Location = this.Location;
+            StudyTrackerForm.StudyTracker.Focus();
+
         }
     }
 }

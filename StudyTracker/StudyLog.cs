@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace StudyTracker
 {
@@ -15,6 +16,8 @@ namespace StudyTracker
         private DateTime startDate;
         private DateTime endDate;
         private TimeSpan timeStudied;
+
+        [JsonProperty("Description")]
         public string Description { get; set; }
 
         public StudyLog()
@@ -29,6 +32,7 @@ namespace StudyTracker
             StartDate = startDate;
             Description = description;
         }
+        [JsonProperty("Topic")]
         public string Topic
         {
             get
@@ -46,6 +50,8 @@ namespace StudyTracker
                 }
             }
         }
+
+        [JsonProperty("StartTime")]
         public DateTime StartTime
         {
             get
@@ -60,6 +66,8 @@ namespace StudyTracker
                 }
             }
         }
+
+        [JsonProperty("EndTime")]
         public DateTime EndTime
         {
             get
@@ -74,6 +82,8 @@ namespace StudyTracker
                 }
             }
         }
+
+        [JsonProperty("StartDate")]
         public DateTime StartDate
         {
             get
@@ -88,6 +98,8 @@ namespace StudyTracker
                 }
             }
         }
+
+        [JsonProperty("EndDate")]
         public DateTime EndDate
         {
             get
@@ -102,6 +114,8 @@ namespace StudyTracker
                 }
             }
         }
+
+        [JsonProperty("TimeStudied")]
         public TimeSpan TimeStudied
         {
             get
@@ -116,6 +130,7 @@ namespace StudyTracker
                 }
             }
         }
+
 
     }
 }

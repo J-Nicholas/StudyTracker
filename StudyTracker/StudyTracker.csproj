@@ -99,6 +99,9 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudyTrackerForm.RecentLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -219,6 +222,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Recent Logs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Recent Logs_none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteLogButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
