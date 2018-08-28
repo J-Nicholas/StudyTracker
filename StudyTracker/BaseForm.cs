@@ -56,7 +56,7 @@ namespace StudyTracker
             AlignMenuBars(ExitLabel, ExitImage);
 
             startLabelBaseRef = startLabel;
-            startImageRef = StartImage; 
+            startImageRef = StartImage;
         }
 
         public static Label StartLabelBaseRef
@@ -72,7 +72,8 @@ namespace StudyTracker
         }
         public static PictureBox StartImageRef
         {
-            get {
+            get
+            {
                 if (startImageRef == null)
                 {
                     startImageRef = new PictureBox();
@@ -88,6 +89,7 @@ namespace StudyTracker
                 CreateParams cp = base.CreateParams;
                 cp.Style |= WS_MINIMIZEBOX;
                 cp.ClassStyle |= CS_DBLCLKS;
+                //cp.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED
                 return cp;
             }
         }
@@ -141,7 +143,7 @@ namespace StudyTracker
         private void StartImage_MouseEnter(object sender, EventArgs e)
         {
             Control control = (Control)sender;                                  // Parsing sender object into a control object so we can get information about the control
-            
+
             //deals with mouseenter on exit label and exit image
             if (control.Name == ExitLabel.Name || control.Name == ExitImage.Name)
             {
@@ -177,8 +179,9 @@ namespace StudyTracker
 
         private void AboutImage_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This application will track the time you spend studying and will log your studying exploits." +
-                "\nClick Start to begin! You can view your study sessions by clicking Logs on the sidebar.\n ", "About",
+            MessageBox.Show("This application will track the time you spend studying and will log your studying sessions" +
+                " Click Start to begin a session now! Or add a session manually by click the green plus symbol!" +
+                " You can view your recent study session here or you can view them all by clicking All logs on the sidebar.\n ", "About",
                 MessageBoxButtons.OK, MessageBoxIcon.None);
         }
 
@@ -295,6 +298,28 @@ namespace StudyTracker
                     }
                 }
                 IsFirstCloseFormCheck = false;
+            }
+        }
+
+        private void LogsImage_Click(object sender, EventArgs e)
+        {
+            if (StudyTrackerForm.logList.Count == 0)
+            {
+                MessageBox.Show("There are no logs to display. Click the green plus icon to add a study session manually or press \"Start\" to start an automatic session.",
+                    "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                LogsDB.StudyLogsDBRef = StudyTrackerForm.logList;
+                LogsDB.LogsDBRef.StartPosition = FormStartPosition.CenterScreen;
+                LogsDB.LogsDBRef.ShowDialog();
+                if (ActiveForm == StudyTrackerForm.StudyTracker)
+                {
+                    StudyTrackerForm.StudyTracker.ClearPanels();
+                    StudyTrackerForm.StudyTracker.GenerateRecentLogs();
+
+                }
+
             }
         }
     }

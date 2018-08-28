@@ -136,9 +136,6 @@
   <data name="study_icon_gR3_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\study_icon_gR3_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Recent Logs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Recent Logs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DIGITALDREAMFATSKEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DIGITALDREAMFATSKEW.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -166,7 +163,7 @@
   <data name="SessionStartButtonSelectedf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SessionStartButtonSelectedf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Recent Logs_none" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Recent_Logs_none" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recent Logs_none.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteLogButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -174,5 +171,11 @@
   </data>
   <data name="EditButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EditButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Recent_Logs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Recent Logs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Add_Record" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add_Record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -55,6 +55,9 @@
     <Reference Include="Costura, Version=3.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.1.0\lib\net46\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Equin.ApplicationFramework.BindingListView">
+      <HintPath>..\..\Study Tracker Resources\Lib\Equin.ApplicationFramework.BindingListView.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -71,6 +74,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewLog.Designer.cs">
+      <DependentUpon>AddNewLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditRecentLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditRecentLog.Designer.cs">
+      <DependentUpon>EditRecentLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogsDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogsDB.Designer.cs">
+      <DependentUpon>LogsDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionManager.cs">
@@ -99,9 +120,15 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StudyTrackerForm.RecentLogs.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <EmbeddedResource Include="AddNewLog.resx">
+      <DependentUpon>AddNewLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditRecentLog.resx">
+      <DependentUpon>EditRecentLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogsDB.resx">
+      <DependentUpon>LogsDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -125,6 +152,7 @@
       <DependentUpon>StudyTrackerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\StudyLog.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -221,9 +249,6 @@
     <None Include="Resources\Session Manager Window.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Recent Logs.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Recent Logs_none.png" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +256,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DeleteLogButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Recent Logs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add_Record.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

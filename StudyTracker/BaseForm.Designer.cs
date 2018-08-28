@@ -153,9 +153,10 @@
             this.logsLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.logsLabel.Location = new System.Drawing.Point(71, 369);
             this.logsLabel.Name = "logsLabel";
-            this.logsLabel.Size = new System.Drawing.Size(55, 24);
+            this.logsLabel.Size = new System.Drawing.Size(87, 24);
             this.logsLabel.TabIndex = 8;
-            this.logsLabel.Text = "Logs";
+            this.logsLabel.Text = "All Logs";
+            this.logsLabel.Click += new System.EventHandler(this.LogsImage_Click);
             this.logsLabel.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
             this.logsLabel.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
             // 
@@ -211,6 +212,7 @@
             this.LogsImage.Size = new System.Drawing.Size(181, 50);
             this.LogsImage.TabIndex = 12;
             this.LogsImage.TabStop = false;
+            this.LogsImage.Click += new System.EventHandler(this.LogsImage_Click);
             this.LogsImage.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
             this.LogsImage.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
             // 
@@ -240,7 +242,7 @@
             // 
             // DragWindow
             // 
-            this.DragWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.DragWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(250)))), ((int)(((byte)(248)))));
             this.DragWindow.Location = new System.Drawing.Point(215, 0);
             this.DragWindow.Name = "DragWindow";
             this.DragWindow.Size = new System.Drawing.Size(488, 30);

@@ -120,13 +120,7 @@ namespace StudyTracker
             }
                 timeBox.Text = DateTime.Now.ToLongTimeString();
         }
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            //StudyTrackerForm.StudyTracker.Location = SessionSetup.Location;
-            //StudyTrackerForm.StudyTracker.Show();
-            //SessionSetup.Hide();
-        }
-        private void saveButton_Click(object sender, EventArgs e)
+        public void saveButton_Click(object sender, EventArgs e)
         {
             // Saves a topic to file if valid. This file can then be accessed to get previously saved topics in a combo box
             if (topicComboBox.Text.Trim(' ') == string.Empty) //trims all spaces from combobox and checks if it is empty

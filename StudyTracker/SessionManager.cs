@@ -200,11 +200,19 @@ namespace StudyTracker
                     ?? new List<StudyLog>();
 
                 StudyLogRef.TimeStudied = timeElapsed;
+                //Formatting Time studied so that it doesn't have really long millisecond component
+                StudyLogRef.TimeStudied = new TimeSpan( StudyLogRef.TimeStudied.Hours, StudyLogRef.TimeStudied.Minutes, StudyLogRef.TimeStudied.Seconds);
+
+                StudyLogRef.TimeStudied =  StudyLogRef.TimeStudied.Subtract(new TimeSpan(StudyLogRef.TimeStudied.Milliseconds));
                 StudyLogRef.EndDate = DateTime.Now;
                 StudyLogRef.EndTime = DateTime.Now;
 
                 logList.Add(StudyLogRef);
+                var logBackup = from logs in logList
+                                orderby logs.EndDate descending
+                                select logs;
 
+                logList = logBackup.ToList();
 
                 jsonData = JsonConvert.SerializeObject(logList);
                 File.WriteAllText(StudyDir.logsDir, jsonData);

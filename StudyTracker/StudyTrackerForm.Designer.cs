@@ -32,6 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.RecentLogsContainer = new System.Windows.Forms.Panel();
             this.RefreshRecentLogs = new System.Windows.Forms.Timer(this.components);
+            this.AddLogButton = new System.Windows.Forms.PictureBox();
+            this.ManualAddTooltip = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.AddLogButton)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,11 +62,24 @@
             this.RefreshRecentLogs.Interval = 30000;
             this.RefreshRecentLogs.Tick += new System.EventHandler(this.RefreshRecentLogs_Tick);
             // 
+            // AddLogButton
+            // 
+            this.AddLogButton.BackgroundImage = global::StudyTracker.Properties.Resources.Add_Record;
+            this.AddLogButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AddLogButton.Location = new System.Drawing.Point(603, 99);
+            this.AddLogButton.Name = "AddLogButton";
+            this.AddLogButton.Size = new System.Drawing.Size(25, 25);
+            this.AddLogButton.TabIndex = 21;
+            this.AddLogButton.TabStop = false;
+            this.ManualAddTooltip.SetToolTip(this.AddLogButton, "Click to add a study session manually.");
+            this.AddLogButton.Click += new System.EventHandler(this.AddLogButton_Click);
+            // 
             // StudyTrackerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 700);
+            this.Controls.Add(this.AddLogButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RecentLogsContainer);
             this.Name = "StudyTrackerForm";
@@ -72,6 +88,8 @@
             this.VisibleChanged += new System.EventHandler(this.StudyTrackerForm_VisibleChanged);
             this.Controls.SetChildIndex(this.RecentLogsContainer, 0);
             this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.AddLogButton, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.AddLogButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +99,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel RecentLogsContainer;
         private System.Windows.Forms.Timer RefreshRecentLogs;
+        private System.Windows.Forms.PictureBox AddLogButton;
+        private System.Windows.Forms.ToolTip ManualAddTooltip;
     }
 }

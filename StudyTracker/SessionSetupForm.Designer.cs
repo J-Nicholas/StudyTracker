@@ -170,7 +170,7 @@
             this.topicComboBox.FormattingEnabled = true;
             this.topicComboBox.Location = new System.Drawing.Point(164, 97);
             this.topicComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.topicComboBox.MaxLength = 27;
+            this.topicComboBox.MaxLength = 32;
             this.topicComboBox.Name = "topicComboBox";
             this.topicComboBox.Size = new System.Drawing.Size(228, 24);
             this.topicComboBox.TabIndex = 7;
@@ -242,7 +242,7 @@
             this.ClientSize = new System.Drawing.Size(700, 700);
             this.Controls.Add(this.SetupPanel);
             this.Name = "SessionSetupForm";
-            this.Text = "Setup Session";
+            this.Text = "Study Tracker";
             this.Load += new System.EventHandler(this.SessionSetupForm_Load);
             this.VisibleChanged += new System.EventHandler(this.SessionSetupForm_VisibleChanged);
             this.Controls.SetChildIndex(this.SetupPanel, 0);

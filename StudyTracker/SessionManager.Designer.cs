@@ -151,7 +151,7 @@
             this.ClientSize = new System.Drawing.Size(700, 700);
             this.Controls.Add(this.WindowPanel);
             this.Name = "SessionManagerForm";
-            this.Text = "Session Manager";
+            this.Text = "Study Tracker";
             this.Load += new System.EventHandler(this.SessionManagerForm_Load);
             this.VisibleChanged += new System.EventHandler(this.SessionManagerForm_VisibleChanged);
             this.Controls.SetChildIndex(this.WindowPanel, 0);

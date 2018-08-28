@@ -63,6 +63,16 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_Record {
+            get {
+                object obj = ResourceManager.GetObject("Add_Record", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ButtonSelected {
             get {
                 object obj = ResourceManager.GetObject("ButtonSelected", resourceCulture);
@@ -175,7 +185,7 @@ namespace StudyTracker.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Recent_Logs {
             get {
-                object obj = ResourceManager.GetObject("Recent Logs", resourceCulture);
+                object obj = ResourceManager.GetObject("Recent_Logs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -185,7 +195,7 @@ namespace StudyTracker.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Recent_Logs_none {
             get {
-                object obj = ResourceManager.GetObject("Recent Logs_none", resourceCulture);
+                object obj = ResourceManager.GetObject("Recent_Logs_none", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
