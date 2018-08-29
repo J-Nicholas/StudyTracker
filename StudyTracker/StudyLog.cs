@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace StudyTracker
 {
+    [DebuggerStepThrough]
     public class StudyLog
     {
         private string topic;

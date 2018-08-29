@@ -11,6 +11,7 @@ using System.Resources;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace StudyTracker
 {
@@ -531,6 +532,10 @@ namespace StudyTracker
         }
         private void RefreshRecentLogs_Tick(object sender, EventArgs e)
         {
+            if (Debugger.IsAttached)
+            {
+                RefreshRecentLogs.Enabled = true;
+            }
             if (ActiveForm == StudyTracker && EditRecentLog.EditLogRef.Visible == false)
             {
                 for (int i = 0; i < dateStudiedValue.Count; i++)

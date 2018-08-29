@@ -310,14 +310,15 @@ namespace StudyTracker
             }
             else
             {
-                LogsDB.StudyLogsDBRef = StudyTrackerForm.logList;
+                StudyTrackerForm.ReadJsonLogs(); //reads latest version of logs before starting database
+                LogsDB.StudyLogsDBRef= StudyTrackerForm.logList;
                 LogsDB.LogsDBRef.StartPosition = FormStartPosition.CenterScreen;
                 LogsDB.LogsDBRef.ShowDialog();
                 if (ActiveForm == StudyTrackerForm.StudyTracker)
                 {
+                    StudyTrackerForm.ReadJsonLogs();
                     StudyTrackerForm.StudyTracker.ClearPanels();
                     StudyTrackerForm.StudyTracker.GenerateRecentLogs();
-
                 }
 
             }
