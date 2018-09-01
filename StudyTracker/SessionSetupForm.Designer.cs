@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SessionSetupForm));
             this.timeLabel = new System.Windows.Forms.Label();
             this.timeBox = new System.Windows.Forms.TextBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
@@ -69,7 +70,7 @@
             this.timeBox.Name = "timeBox";
             this.timeBox.ReadOnly = true;
             this.timeBox.Size = new System.Drawing.Size(88, 16);
-            this.timeBox.TabIndex = 10;
+            this.timeBox.TabIndex = 3;
             this.timeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // descriptionLabel
@@ -95,7 +96,7 @@
             this.descriptionBox.Margin = new System.Windows.Forms.Padding(2);
             this.descriptionBox.Name = "descriptionBox";
             this.descriptionBox.Size = new System.Drawing.Size(280, 102);
-            this.descriptionBox.TabIndex = 14;
+            this.descriptionBox.TabIndex = 5;
             this.descriptionBox.Text = "";
             // 
             // currentTimeTimer
@@ -116,7 +117,7 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(2);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(56, 26);
-            this.saveButton.TabIndex = 8;
+            this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -145,7 +146,7 @@
             this.dateBox.Name = "dateBox";
             this.dateBox.ReadOnly = true;
             this.dateBox.Size = new System.Drawing.Size(88, 16);
-            this.dateBox.TabIndex = 12;
+            this.dateBox.TabIndex = 4;
             this.dateBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // topicLabel
@@ -173,7 +174,7 @@
             this.topicComboBox.MaxLength = 32;
             this.topicComboBox.Name = "topicComboBox";
             this.topicComboBox.Size = new System.Drawing.Size(228, 24);
-            this.topicComboBox.TabIndex = 7;
+            this.topicComboBox.TabIndex = 0;
             this.topicComboBox.DropDown += new System.EventHandler(this.topicComboBox_DropDown);
             this.topicComboBox.TextChanged += new System.EventHandler(this.topicComboBox_TextChanged);
             // 
@@ -190,7 +191,7 @@
             this.deleteButton.Margin = new System.Windows.Forms.Padding(2);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(70, 26);
-            this.deleteButton.TabIndex = 16;
+            this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
@@ -207,7 +208,7 @@
             this.startButton.Margin = new System.Windows.Forms.Padding(2);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(180, 47);
-            this.startButton.TabIndex = 15;
+            this.startButton.TabIndex = 6;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
@@ -241,6 +242,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 700);
             this.Controls.Add(this.SetupPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SessionSetupForm";
             this.Text = "Study Tracker";
             this.Load += new System.EventHandler(this.SessionSetupForm_Load);

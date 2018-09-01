@@ -34,13 +34,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsDB));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.LogsDBView = new System.Windows.Forms.DataGridView();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveToFileToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.CloseDatabaseStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewEntryMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.logsTopic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logsDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logsStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,9 +42,16 @@
             this.logsEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logsTimeStudied = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studyLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveToFileToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.CloseDatabaseStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewEntryMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.LogsDBView)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studyLogBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
@@ -89,61 +89,6 @@
             this.LogsDBView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.LogsDBView_UserAddedRow);
             this.LogsDBView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.LogsDBView_UserDeletedRow);
             this.LogsDBView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.LogsDBView_UserDeletingRow);
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveToFileToolStrip,
-            this.toolStripSeparator1,
-            this.CloseDatabaseStrip});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // SaveToFileToolStrip
-            // 
-            this.SaveToFileToolStrip.Name = "SaveToFileToolStrip";
-            this.SaveToFileToolStrip.Size = new System.Drawing.Size(154, 22);
-            this.SaveToFileToolStrip.Text = "Save";
-            this.SaveToFileToolStrip.Click += new System.EventHandler(this.SaveToFileToolStrip_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
-            // 
-            // CloseDatabaseStrip
-            // 
-            this.CloseDatabaseStrip.Name = "CloseDatabaseStrip";
-            this.CloseDatabaseStrip.Size = new System.Drawing.Size(154, 22);
-            this.CloseDatabaseStrip.Text = "Close Database";
-            this.CloseDatabaseStrip.Click += new System.EventHandler(this.closeDatabaseToolStripMenuItem_Click);
-            // 
-            // filterToolStripMenuItem
-            // 
-            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.filterToolStripMenuItem.Text = "Filter";
-            this.filterToolStripMenuItem.Click += new System.EventHandler(this.FilterDialogStrip_Click);
-            // 
-            // NewEntryMenuButton
-            // 
-            this.NewEntryMenuButton.Name = "NewEntryMenuButton";
-            this.NewEntryMenuButton.Size = new System.Drawing.Size(73, 20);
-            this.NewEntryMenuButton.Text = "New Entry";
-            this.NewEntryMenuButton.Click += new System.EventHandler(this.NewEntryMenuButton_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.filterToolStripMenuItem,
-            this.NewEntryMenuButton});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // logsTopic
             // 
@@ -215,6 +160,61 @@
             // 
             this.studyLogBindingSource.DataSource = typeof(StudyTracker.StudyLog);
             // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveToFileToolStrip,
+            this.toolStripSeparator1,
+            this.CloseDatabaseStrip});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // SaveToFileToolStrip
+            // 
+            this.SaveToFileToolStrip.Name = "SaveToFileToolStrip";
+            this.SaveToFileToolStrip.Size = new System.Drawing.Size(154, 22);
+            this.SaveToFileToolStrip.Text = "Save";
+            this.SaveToFileToolStrip.Click += new System.EventHandler(this.SaveToFileToolStrip_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            // 
+            // CloseDatabaseStrip
+            // 
+            this.CloseDatabaseStrip.Name = "CloseDatabaseStrip";
+            this.CloseDatabaseStrip.Size = new System.Drawing.Size(154, 22);
+            this.CloseDatabaseStrip.Text = "Close Database";
+            this.CloseDatabaseStrip.Click += new System.EventHandler(this.closeDatabaseToolStripMenuItem_Click);
+            // 
+            // filterToolStripMenuItem
+            // 
+            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.filterToolStripMenuItem.Text = "Filter";
+            this.filterToolStripMenuItem.Click += new System.EventHandler(this.FilterDialogStrip_Click);
+            // 
+            // NewEntryMenuButton
+            // 
+            this.NewEntryMenuButton.Name = "NewEntryMenuButton";
+            this.NewEntryMenuButton.Size = new System.Drawing.Size(73, 20);
+            this.NewEntryMenuButton.Text = "New Entry";
+            this.NewEntryMenuButton.Click += new System.EventHandler(this.NewEntryMenuButton_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.filterToolStripMenuItem,
+            this.NewEntryMenuButton});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // LogsDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,9 +231,9 @@
             this.Load += new System.EventHandler(this.LogsDB_Load);
             this.VisibleChanged += new System.EventHandler(this.LogsDB_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.LogsDBView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studyLogBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studyLogBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

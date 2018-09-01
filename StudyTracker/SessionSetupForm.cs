@@ -19,7 +19,7 @@ namespace StudyTracker
         private FileStream file;
         private List<string> topicsFromFile = new List<string>();
         private static Label sidebarLabelRef = null;
-        
+
         public SessionSetupForm()
         {
             InitializeComponent();
@@ -108,9 +108,9 @@ namespace StudyTracker
             RemoveDuplicatesFromFile(StudyDir.TopicDir);
             GetTopicsFromFile();
             SetupPanel.Parent = SessionSetup;
-
-           
         }
+
+
         private void currentTimeTimer_Tick(object sender, EventArgs e)
         {
             //updates once a second i.e. 1000ms tick
@@ -118,20 +118,26 @@ namespace StudyTracker
             {
                 currentTimeTimer.Enabled = false;
             }
-                timeBox.Text = DateTime.Now.ToLongTimeString();
+            timeBox.Text = DateTime.Now.ToLongTimeString();
         }
-        public void saveButton_Click(object sender, EventArgs e)
+        private bool TopicValidated()
         {
-            // Saves a topic to file if valid. This file can then be accessed to get previously saved topics in a combo box
             if (topicComboBox.Text.Trim(' ') == string.Empty) //trims all spaces from combobox and checks if it is empty
             {
                 MessageBox.Show("Topic cannot be empty.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
             else if (topicComboBox.Items.Contains(topicComboBox.Text))
             {
                 MessageBox.Show("Topic already saved!", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
-            else
+            else return true;
+        }
+        public void saveButton_Click(object sender, EventArgs e)
+        {
+            // Saves a topic to file if valid. This file can then be accessed to get previously saved topics in a combo box
+            if (TopicValidated() == true)
             {
                 string topicToSave = topicComboBox.Text;
 
@@ -282,9 +288,9 @@ namespace StudyTracker
                     DateTime.Parse(dateBox.Text),
                     descriptionBox.Text);
                 // Pass log to Session Manager
-                SessionManagerForm.StudyLogRef = log;
+                SessionManagerForm.NewStudyLog = log;
 
-                
+
                 this.Hide();
                 SessionManagerForm.SessionManagerRef.Show();
                 SessionManagerForm.SessionManagerRef.Location = this.Location;
@@ -295,7 +301,6 @@ namespace StudyTracker
                     SessionManagerForm.startButtonLabelRef.Location.Y);
             }
         }
-
         private void SessionSetupForm_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible.Equals(true))
@@ -309,14 +314,10 @@ namespace StudyTracker
                 descriptionBox.Text = string.Empty;
             }
         }
-
         private void startButton_MouseEnter(object sender, EventArgs e)
         {
             startButton.BackgroundImage = Properties.Resources.SessionStartButtonSelectedf;
-            //startButton.BackgroundImageLayout = ImageLayout.Stretch;
-            
         }
-
         private void startButton_MouseLeave(object sender, EventArgs e)
         {
             startButton.BackgroundImage = null;

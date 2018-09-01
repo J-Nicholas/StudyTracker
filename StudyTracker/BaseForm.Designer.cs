@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             this.CloseButtonImage = new System.Windows.Forms.PictureBox();
             this.MinimiseButtonImage = new System.Windows.Forms.PictureBox();
@@ -44,6 +45,9 @@
             this.ExitImage = new System.Windows.Forms.PictureBox();
             this.AboutImage = new System.Windows.Forms.PictureBox();
             this.DragWindow = new System.Windows.Forms.PictureBox();
+            this.StatsToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.StatisticsImage = new System.Windows.Forms.PictureBox();
+            this.StatisticsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButtonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinimiseButtonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SidebarImage)).BeginInit();
@@ -54,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ExitImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AboutImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DragWindow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StatisticsImage)).BeginInit();
             this.SuspendLayout();
             // 
             // CloseButtonImage
@@ -95,13 +100,16 @@
             // SideBar_BookImage
             // 
             this.SideBar_BookImage.BackColor = System.Drawing.Color.Transparent;
-            this.SideBar_BookImage.BackgroundImage = global::StudyTracker.Properties.Resources.SideBar_Book;
+            this.SideBar_BookImage.BackgroundImage = global::StudyTracker.Properties.Resources.Study_Tracker_Icon;
             this.SideBar_BookImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.SideBar_BookImage.Location = new System.Drawing.Point(19, 52);
             this.SideBar_BookImage.Name = "SideBar_BookImage";
             this.SideBar_BookImage.Size = new System.Drawing.Size(160, 160);
             this.SideBar_BookImage.TabIndex = 4;
             this.SideBar_BookImage.TabStop = false;
+            this.StatsToolTip.SetToolTip(this.SideBar_BookImage, "Click me.");
+            this.SideBar_BookImage.Click += new System.EventHandler(this.SideBar_BookImage_Click);
+            this.SideBar_BookImage.DoubleClick += new System.EventHandler(this.SideBar_BookImage_Click);
             // 
             // Sidebar_TitleImage
             // 
@@ -123,7 +131,7 @@
             this.linkToMyLinkdin.Location = new System.Drawing.Point(26, 663);
             this.linkToMyLinkdin.Name = "linkToMyLinkdin";
             this.linkToMyLinkdin.Size = new System.Drawing.Size(143, 18);
-            this.linkToMyLinkdin.TabIndex = 6;
+            this.linkToMyLinkdin.TabIndex = 5;
             this.linkToMyLinkdin.TabStop = true;
             this.linkToMyLinkdin.Text = "Johnathan Nicholas";
             this.linkToMyLinkdin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkToMyLinkdin_LinkClicked);
@@ -135,10 +143,10 @@
             this.startLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.startLabel.Location = new System.Drawing.Point(72, 297);
+            this.startLabel.Location = new System.Drawing.Point(67, 255);
             this.startLabel.Name = "startLabel";
             this.startLabel.Size = new System.Drawing.Size(56, 24);
-            this.startLabel.TabIndex = 7;
+            this.startLabel.TabIndex = 0;
             this.startLabel.Text = "Start";
             this.startLabel.Click += new System.EventHandler(this.StartImage_Click);
             this.startLabel.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
@@ -151,10 +159,10 @@
             this.logsLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logsLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logsLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.logsLabel.Location = new System.Drawing.Point(71, 369);
+            this.logsLabel.Location = new System.Drawing.Point(66, 329);
             this.logsLabel.Name = "logsLabel";
             this.logsLabel.Size = new System.Drawing.Size(87, 24);
-            this.logsLabel.TabIndex = 8;
+            this.logsLabel.TabIndex = 1;
             this.logsLabel.Text = "All Logs";
             this.logsLabel.Click += new System.EventHandler(this.LogsImage_Click);
             this.logsLabel.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
@@ -167,10 +175,10 @@
             this.AboutLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AboutLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AboutLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AboutLabel.Location = new System.Drawing.Point(66, 441);
+            this.AboutLabel.Location = new System.Drawing.Point(61, 477);
             this.AboutLabel.Name = "AboutLabel";
             this.AboutLabel.Size = new System.Drawing.Size(66, 24);
-            this.AboutLabel.TabIndex = 9;
+            this.AboutLabel.TabIndex = 3;
             this.AboutLabel.Text = "About";
             this.AboutLabel.Click += new System.EventHandler(this.AboutImage_Click);
             this.AboutLabel.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
@@ -183,10 +191,10 @@
             this.ExitLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ExitLabel.Location = new System.Drawing.Point(74, 513);
+            this.ExitLabel.Location = new System.Drawing.Point(69, 551);
             this.ExitLabel.Name = "ExitLabel";
             this.ExitLabel.Size = new System.Drawing.Size(46, 24);
-            this.ExitLabel.TabIndex = 10;
+            this.ExitLabel.TabIndex = 4;
             this.ExitLabel.Text = "Exit";
             this.ExitLabel.Click += new System.EventHandler(this.CloseButtonImage_Click);
             this.ExitLabel.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
@@ -195,7 +203,7 @@
             // StartImage
             // 
             this.StartImage.BackColor = System.Drawing.Color.Transparent;
-            this.StartImage.Location = new System.Drawing.Point(9, 283);
+            this.StartImage.Location = new System.Drawing.Point(9, 242);
             this.StartImage.Name = "StartImage";
             this.StartImage.Size = new System.Drawing.Size(181, 50);
             this.StartImage.TabIndex = 11;
@@ -207,7 +215,7 @@
             // LogsImage
             // 
             this.LogsImage.BackColor = System.Drawing.Color.Transparent;
-            this.LogsImage.Location = new System.Drawing.Point(9, 356);
+            this.LogsImage.Location = new System.Drawing.Point(9, 316);
             this.LogsImage.Name = "LogsImage";
             this.LogsImage.Size = new System.Drawing.Size(181, 50);
             this.LogsImage.TabIndex = 12;
@@ -219,7 +227,7 @@
             // ExitImage
             // 
             this.ExitImage.BackColor = System.Drawing.Color.Transparent;
-            this.ExitImage.Location = new System.Drawing.Point(9, 502);
+            this.ExitImage.Location = new System.Drawing.Point(9, 538);
             this.ExitImage.Name = "ExitImage";
             this.ExitImage.Size = new System.Drawing.Size(181, 50);
             this.ExitImage.TabIndex = 16;
@@ -231,7 +239,7 @@
             // AboutImage
             // 
             this.AboutImage.BackColor = System.Drawing.Color.Transparent;
-            this.AboutImage.Location = new System.Drawing.Point(9, 429);
+            this.AboutImage.Location = new System.Drawing.Point(9, 464);
             this.AboutImage.Name = "AboutImage";
             this.AboutImage.Size = new System.Drawing.Size(181, 50);
             this.AboutImage.TabIndex = 15;
@@ -252,6 +260,36 @@
             this.DragWindow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DragWindow_MouseMove);
             this.DragWindow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DragWindow_MouseUp);
             // 
+            // StatisticsImage
+            // 
+            this.StatisticsImage.BackColor = System.Drawing.Color.Transparent;
+            this.StatisticsImage.Location = new System.Drawing.Point(9, 390);
+            this.StatisticsImage.Name = "StatisticsImage";
+            this.StatisticsImage.Size = new System.Drawing.Size(181, 50);
+            this.StatisticsImage.TabIndex = 19;
+            this.StatisticsImage.TabStop = false;
+            this.StatisticsImage.Click += new System.EventHandler(this.SideBar_BookImage_Click);
+            this.StatisticsImage.DoubleClick += new System.EventHandler(this.SideBar_BookImage_Click);
+            this.StatisticsImage.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
+            this.StatisticsImage.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
+            // 
+            // StatisticsLabel
+            // 
+            this.StatisticsLabel.AutoSize = true;
+            this.StatisticsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StatisticsLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StatisticsLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatisticsLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.StatisticsLabel.Location = new System.Drawing.Point(61, 403);
+            this.StatisticsLabel.Name = "StatisticsLabel";
+            this.StatisticsLabel.Size = new System.Drawing.Size(97, 24);
+            this.StatisticsLabel.TabIndex = 2;
+            this.StatisticsLabel.Text = "Statistics";
+            this.StatisticsLabel.Click += new System.EventHandler(this.SideBar_BookImage_Click);
+            this.StatisticsLabel.DoubleClick += new System.EventHandler(this.SideBar_BookImage_Click);
+            this.StatisticsLabel.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
+            this.StatisticsLabel.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +297,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(236)))), ((int)(((byte)(229)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(700, 700);
+            this.Controls.Add(this.StatisticsImage);
+            this.Controls.Add(this.StatisticsLabel);
             this.Controls.Add(this.ExitImage);
             this.Controls.Add(this.AboutImage);
             this.Controls.Add(this.LogsImage);
@@ -296,6 +336,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ExitImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AboutImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DragWindow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StatisticsImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,5 +358,8 @@
         private System.Windows.Forms.PictureBox ExitImage;
         private System.Windows.Forms.PictureBox AboutImage;
         private System.Windows.Forms.PictureBox DragWindow;
+        private System.Windows.Forms.ToolTip StatsToolTip;
+        private System.Windows.Forms.PictureBox StatisticsImage;
+        private System.Windows.Forms.Label StatisticsLabel;
     }
 }

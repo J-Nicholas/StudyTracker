@@ -9,6 +9,9 @@ using System.Diagnostics;
 
 namespace StudyTracker
 {
+    /// <summary>
+    ///  Class responsible for holding StudyTracker logs in memory.
+    /// </summary>
     [DebuggerStepThrough]
     public class StudyLog
     {
@@ -19,13 +22,11 @@ namespace StudyTracker
         private DateTime endDate;
         private TimeSpan timeStudied;
 
-        [JsonProperty("Description")]
         public string Description { get; set; }
 
         public StudyLog()
         {
             //empty studyLog
-
         }
         public StudyLog(string topic, DateTime startTime, DateTime startDate, string description)
         {
@@ -34,7 +35,6 @@ namespace StudyTracker
             StartDate = startDate;
             Description = description;
         }
-        [JsonProperty("Topic")]
         public string Topic
         {
             get
@@ -53,7 +53,6 @@ namespace StudyTracker
             }
         }
 
-        [JsonProperty("StartTime")]
         public DateTime StartTime
         {
             get
@@ -69,7 +68,6 @@ namespace StudyTracker
             }
         }
 
-        [JsonProperty("EndTime")]
         public DateTime EndTime
         {
             get
@@ -85,7 +83,6 @@ namespace StudyTracker
             }
         }
 
-        [JsonProperty("StartDate")]
         public DateTime StartDate
         {
             get
@@ -101,7 +98,6 @@ namespace StudyTracker
             }
         }
 
-        [JsonProperty("EndDate")]
         public DateTime EndDate
         {
             get
@@ -117,7 +113,6 @@ namespace StudyTracker
             }
         }
 
-        [JsonProperty("TimeStudied")]
         public TimeSpan TimeStudied
         {
             get

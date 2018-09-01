@@ -16,7 +16,6 @@ namespace StudyTracker
     public partial class LogsDB : Form
     {
         private static Form logsDBRef;
-        private static List<StudyLog> studyLogsDBref = null;
         private BindingListView<StudyLog> studyLogListView;
         public static DataGridView dataGridViewRef;
         public static List<StudyLog> rowsToDelete = new List<StudyLog>();
@@ -47,24 +46,12 @@ namespace StudyTracker
                 return logsDBRef;
             }
         }
-        public static List<StudyLog> StudyLogsDBRef
-        {
-            get
-            {
-                if (studyLogsDBref == null)
-                    studyLogsDBref = new List<StudyLog>();
-                return studyLogsDBref;
-            }
-            set
-            {
-                studyLogsDBref = value;
-            }
-        }
+
 
         private void LogsDB_Load(object sender, EventArgs e)
         {
             // set data source to study logs ref 
-            studyLogListView = new BindingListView<StudyLog>(studyLogsDBref);
+            studyLogListView = new BindingListView<StudyLog>(LogData.StudyLogs);
             LogsDBView.DataSource = studyLogListView;
 
 
@@ -149,8 +136,7 @@ namespace StudyTracker
             {
                 promptToSave = false;
                 //update bindinglist
-                FilterDialogForm.FilterDialogBindingRef = studyLogsDBref;           //FilterdialogBindingRef is out date, need to update
-                studyLogListView = new BindingListView<StudyLog>(StudyLogsDBRef);
+                studyLogListView = new BindingListView<StudyLog>(LogData.StudyLogs);
                 dataGridViewRef.DataSource = studyLogListView;
                 LogsDBView.Sort(LogsDBView.Columns["logsEndDate"], ListSortDirection.Descending);
                 LogsDBView.Refresh();
@@ -236,7 +222,7 @@ namespace StudyTracker
             {
                 foreach (var item in rowsToDelete)
                 {
-                    studyLogsDBref.Remove(item);
+                    LogData.StudyLogs.Remove(item);
                 }
             }
         }
@@ -253,19 +239,10 @@ namespace StudyTracker
         private void SaveToFile()
         {
             List<StudyLog> tempStudyLog = (List<StudyLog>)studyLogListView.DataSource;
-            StudyTrackerForm.logList = tempStudyLog;
+            LogData.StudyLogs = tempStudyLog;
 
-            //order loglist
-            var orderedList = from logs in StudyTrackerForm.logList
-                              orderby logs.EndDate descending
-                              select logs;
-
-            StudyTrackerForm.logList = orderedList.ToList();
-
-            // serialize and write to file
-            var JsonData = JsonConvert.SerializeObject(StudyTrackerForm.logList);
-            File.WriteAllText(StudyDir.logsDir, JsonData);
-
+            // Save Changes by writing to file.
+            LogData.WriteToFile();
         }
 
         private void LogsDBView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -279,9 +256,9 @@ namespace StudyTracker
             DialogResult result = AddNewLog.AddNewLogRef.ShowDialog();
             if (result == DialogResult.OK)
             {
-                StudyTrackerForm.logList.Add(StudyTrackerForm.newLogFromAddForm);
+                
 
-                studyLogListView = new BindingListView<StudyLog>(studyLogsDBref);
+                studyLogListView = new BindingListView<StudyLog>(LogData.StudyLogs);
                 LogsDBView.DataSource = studyLogListView;
                 LogsDBView.Refresh();
 
@@ -300,7 +277,6 @@ namespace StudyTracker
         {
             DialogResult result;
             FilterDialogForm.FilterDialog.StartPosition = FormStartPosition.CenterScreen;
-            FilterDialogForm.FilterDialogBindingRef = studyLogsDBref;
             result = FilterDialogForm.FilterDialog.ShowDialog();
 
 

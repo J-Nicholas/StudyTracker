@@ -121,9 +121,6 @@
   <data name="Close_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SideBar_Book" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SideBar_Book.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Form_Background_Alt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Form Background_Alt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -132,12 +129,6 @@
   </data>
   <data name="Min_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Min_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="study_icon_gR3_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\study_icon_gR3_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DIGITALDREAMFATSKEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DIGITALDREAMFATSKEW.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Close_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,5 +168,14 @@
   </data>
   <data name="Add_Record" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add_Record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stats_Title" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stats_Title.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Study_Tracker_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Study_Tracker_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="study_tracker_icon_ihP_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\study_tracker_icon_ihP_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

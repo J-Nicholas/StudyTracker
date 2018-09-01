@@ -16,31 +16,9 @@ namespace StudyTracker
 {
     public partial class SessionManagerForm : BaseForm
     {
-        #region Embedding Timer Font
-
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv,
-            [System.Runtime.InteropServices.In] ref uint pcFonts);
-        private PrivateFontCollection fontCollection = new PrivateFontCollection();
-
-        Font clockFont;
-        private void FontSetup()
-        {
-            byte[] fontData = Properties.Resources.DIGITALDREAMFATSKEW;
-            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
-            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            uint dummy = 0;
-            fontCollection.AddMemoryFont(fontPtr, Properties.Resources.DIGITALDREAMFATSKEW.Length);
-            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.DIGITALDREAMFATSKEW.Length, IntPtr.Zero, ref dummy);
-            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
-
-            clockFont = new Font(fontCollection.Families[0], 20);
-        }
-        #endregion
-
         private TimeSpan timeElapsed;
         public static Stopwatch stopWatch = new Stopwatch();
-        private static StudyLog studyLogRef;
+        public static StudyLog NewStudyLog { get; set; }
         public static Label startButtonLabelRef;
         public static PictureBox startImageRef;
         private static SessionManagerForm sessionManagerRef;
@@ -63,21 +41,7 @@ namespace StudyTracker
                 return StartImageRef;
             }
         }
-        public static StudyLog StudyLogRef
-        {
-            get
-            {
-                if (studyLogRef == null)
-                {
-                    studyLogRef = new StudyLog();
-                }
-                return studyLogRef;
-            }
-            set
-            {
-                studyLogRef = value;
-            }
-        }
+
         public static SessionManagerForm SessionManagerRef
         {
             get
@@ -167,7 +131,7 @@ namespace StudyTracker
             else
             {
                 stopWatch.Start();
-                topicLabel.Text = $"{StudyLogRef.Topic} for:";
+                topicLabel.Text = $"{NewStudyLog.Topic} for:";
                 topicLabel.Parent = WindowPanel;
                 topicLabel.Location = new Point((WindowPanel.Width - topicLabel.Width) / 2, topicLabel.Location.Y);
 
@@ -176,53 +140,36 @@ namespace StudyTracker
 
         private void finishButton_Click(object sender, EventArgs e)
         {
-            stopWatch.Stop();
             // Add End Time, End Date, Total time spent
+            stopWatch.Stop();
 
             // Highlights the newest entry in the list of recent logs
             StudyTrackerForm.AddedNewEntry = true;
             StudyTrackerForm.StudyTracker.HighlightLatest = true;
 
 
-
-            // Writing log to Json file
-            //string jsonOutput = JsonConvert.SerializeObject(StudyLogRef);
-            //JsonSerializer serializer = new JsonSerializer();
-
-            try
+            if (!File.Exists(StudyDir.logsDir))
             {
-                if (!File.Exists(StudyDir.logsDir))
-                {
-                    using (File.Create(StudyDir.logsDir)) { };
-                }
-                var jsonData = File.ReadAllText(StudyDir.logsDir);
-                var logList = JsonConvert.DeserializeObject<List<StudyLog>>(jsonData)
-                    ?? new List<StudyLog>();
-
-                StudyLogRef.TimeStudied = timeElapsed;
-                //Formatting Time studied so that it doesn't have really long millisecond component
-                StudyLogRef.TimeStudied = new TimeSpan( StudyLogRef.TimeStudied.Hours, StudyLogRef.TimeStudied.Minutes, StudyLogRef.TimeStudied.Seconds);
-
-                StudyLogRef.TimeStudied =  StudyLogRef.TimeStudied.Subtract(new TimeSpan(StudyLogRef.TimeStudied.Milliseconds));
-                StudyLogRef.EndDate = DateTime.Now;
-                StudyLogRef.EndTime = DateTime.Now;
-
-                logList.Add(StudyLogRef);
-                var logBackup = from logs in logList
-                                orderby logs.EndDate descending
-                                select logs;
-
-                logList = logBackup.ToList();
-
-                jsonData = JsonConvert.SerializeObject(logList);
-                File.WriteAllText(StudyDir.logsDir, jsonData);
-
+                using (File.Create(StudyDir.logsDir)) { };
             }
-            catch (IOException error)
-            {
-                MessageBox.Show("Could not write to log file.\n" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            LogData.ReadFromFile();                             // Get latest version of log file
+
+            //Formatting Time studied so that it doesn't have really long millisecond component
+            NewStudyLog.TimeStudied = timeElapsed;
+            NewStudyLog.TimeStudied = NewStudyLog.TimeStudied.Subtract(new TimeSpan(NewStudyLog.TimeStudied.Milliseconds));
+            NewStudyLog.TimeStudied = new TimeSpan(NewStudyLog.TimeStudied.Hours, NewStudyLog.TimeStudied.Minutes, NewStudyLog.TimeStudied.Seconds);
+
+            // Updating New log with new information before saving
+            NewStudyLog.EndDate = DateTime.Now;
+            NewStudyLog.EndTime = DateTime.Now;
+
+            LogData.StudyLogs.Add(NewStudyLog);                 // Add new log that has been created
+            LogData.WriteToFile();                              // Save to file
+
             MessageBox.Show("Well done!\nYour study session has been saved!", "Well Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
 
             StudyTrackerForm.StudyTracker.Show();
             SessionManagerRef.Hide();

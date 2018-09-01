@@ -111,16 +111,6 @@ namespace StudyTracker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] DIGITALDREAMFATSKEW {
-            get {
-                object obj = ResourceManager.GetObject("DIGITALDREAMFATSKEW", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap EditButton {
@@ -233,9 +223,19 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SideBar_Book {
+        internal static System.Drawing.Bitmap Stats_Title {
             get {
-                object obj = ResourceManager.GetObject("SideBar_Book", resourceCulture);
+                object obj = ResourceManager.GetObject("Stats_Title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Study_Tracker_Icon {
+            get {
+                object obj = ResourceManager.GetObject("Study_Tracker_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,9 @@ namespace StudyTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon study_icon_gR3_icon {
+        internal static System.Drawing.Icon study_tracker_icon_ihP_icon {
             get {
-                object obj = ResourceManager.GetObject("study_icon_gR3_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("study_tracker_icon_ihP_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

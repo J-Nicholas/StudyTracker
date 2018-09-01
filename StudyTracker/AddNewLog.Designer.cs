@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewLog));
             this.SetupPanel = new System.Windows.Forms.Panel();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.TimeFinishedBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -50,6 +52,8 @@
             this.SetupPanel.BackColor = System.Drawing.Color.Transparent;
             this.SetupPanel.BackgroundImage = global::StudyTracker.Properties.Resources.Form_Background_Alt;
             this.SetupPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SetupPanel.Controls.Add(this.deleteButton);
+            this.SetupPanel.Controls.Add(this.saveButton);
             this.SetupPanel.Controls.Add(this.TimeFinishedBox);
             this.SetupPanel.Controls.Add(this.label1);
             this.SetupPanel.Controls.Add(this.cancelButton);
@@ -65,7 +69,42 @@
             this.SetupPanel.Location = new System.Drawing.Point(13, 12);
             this.SetupPanel.Name = "SetupPanel";
             this.SetupPanel.Size = new System.Drawing.Size(433, 637);
-            this.SetupPanel.TabIndex = 20;
+            this.SetupPanel.TabIndex = 0;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(130)))), ((int)(((byte)(150)))));
+            this.deleteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.deleteButton.Enabled = false;
+            this.deleteButton.FlatAppearance.BorderSize = 0;
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.deleteButton.Location = new System.Drawing.Point(322, 125);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(70, 26);
+            this.deleteButton.TabIndex = 2;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(95)))));
+            this.saveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.saveButton.FlatAppearance.BorderSize = 0;
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.saveButton.Location = new System.Drawing.Point(262, 125);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(2);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(56, 26);
+            this.saveButton.TabIndex = 1;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // TimeFinishedBox
             // 
@@ -77,7 +116,7 @@
             this.TimeFinishedBox.Margin = new System.Windows.Forms.Padding(2);
             this.TimeFinishedBox.Name = "TimeFinishedBox";
             this.TimeFinishedBox.Size = new System.Drawing.Size(88, 16);
-            this.TimeFinishedBox.TabIndex = 19;
+            this.TimeFinishedBox.TabIndex = 4;
             this.TimeFinishedBox.Text = "00:00";
             this.TimeFinishedBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -106,10 +145,9 @@
             this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(180, 47);
-            this.cancelButton.TabIndex = 17;
+            this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // FinishedButton
             // 
@@ -123,7 +161,7 @@
             this.FinishedButton.Margin = new System.Windows.Forms.Padding(2);
             this.FinishedButton.Name = "FinishedButton";
             this.FinishedButton.Size = new System.Drawing.Size(180, 47);
-            this.FinishedButton.TabIndex = 15;
+            this.FinishedButton.TabIndex = 7;
             this.FinishedButton.Text = "Save";
             this.FinishedButton.UseVisualStyleBackColor = false;
             this.FinishedButton.Click += new System.EventHandler(this.FinishedButton_Click);
@@ -138,13 +176,12 @@
             this.descriptionBox.Margin = new System.Windows.Forms.Padding(2);
             this.descriptionBox.Name = "descriptionBox";
             this.descriptionBox.Size = new System.Drawing.Size(280, 102);
-            this.descriptionBox.TabIndex = 14;
+            this.descriptionBox.TabIndex = 6;
             this.descriptionBox.Text = "";
             // 
             // topicComboBox
             // 
             this.topicComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(230)))));
-            this.topicComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.topicComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topicComboBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.topicComboBox.FormattingEnabled = true;
@@ -153,7 +190,9 @@
             this.topicComboBox.MaxLength = 32;
             this.topicComboBox.Name = "topicComboBox";
             this.topicComboBox.Size = new System.Drawing.Size(228, 24);
-            this.topicComboBox.TabIndex = 7;
+            this.topicComboBox.TabIndex = 0;
+            this.topicComboBox.SelectedIndexChanged += new System.EventHandler(this.topicComboBox_SelectedIndexChanged);
+            this.topicComboBox.TextChanged += new System.EventHandler(this.topicComboBox_TextChanged);
             // 
             // descriptionLabel
             // 
@@ -191,7 +230,7 @@
             this.StartTimeBox.Margin = new System.Windows.Forms.Padding(2);
             this.StartTimeBox.Name = "StartTimeBox";
             this.StartTimeBox.Size = new System.Drawing.Size(88, 16);
-            this.StartTimeBox.TabIndex = 10;
+            this.StartTimeBox.TabIndex = 3;
             this.StartTimeBox.Text = "00:00";
             this.StartTimeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -218,7 +257,7 @@
             this.dateBox.Margin = new System.Windows.Forms.Padding(2);
             this.dateBox.Name = "dateBox";
             this.dateBox.Size = new System.Drawing.Size(88, 16);
-            this.dateBox.TabIndex = 12;
+            this.dateBox.TabIndex = 5;
             this.dateBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dateLabel
@@ -246,7 +285,6 @@
             this.MinimumSize = new System.Drawing.Size(475, 700);
             this.Name = "AddNewLog";
             this.Text = "Add Study Log";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddNewLog_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.AddNewLog_VisibleChanged);
             this.SetupPanel.ResumeLayout(false);
             this.SetupPanel.PerformLayout();
@@ -269,5 +307,7 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.TextBox dateBox;
         private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }

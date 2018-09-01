@@ -26,6 +26,8 @@ namespace StudyTracker
         private static Label startLabelBaseRef;
         private static PictureBox startImageRef;
         private static bool IsFirstCloseFormCheck = true;
+        public static bool IsStatsOpen = false;
+
 
         public BaseForm()
         {
@@ -54,6 +56,8 @@ namespace StudyTracker
             AlignMenuBars(AboutLabel, AboutImage);
             AlignMenuBars(ExitImage, SidebarImage);
             AlignMenuBars(ExitLabel, ExitImage);
+            AlignMenuBars(StatisticsImage, SidebarImage);
+            AlignMenuBars(StatisticsLabel, StatisticsImage);
 
             startLabelBaseRef = startLabel;
             startImageRef = StartImage;
@@ -179,10 +183,11 @@ namespace StudyTracker
 
         private void AboutImage_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This application will track the time you spend studying and will log your studying sessions" +
-                " Click Start to begin a session now! Or add a session manually by click the green plus symbol!" +
-                " You can view your recent study session here or you can view them all by clicking All logs on the sidebar.\n ", "About",
-                MessageBoxButtons.OK, MessageBoxIcon.None);
+            MessageBox.Show("This application will track the time you spend studying and will log your studying sessions. " +
+                "Click Start to begin a session now! Or add a session manually by clicking the green plus symbol! " +
+                "You can view your most recent study sessions on the main screen or you can view them all by clicking " +
+                "“All logs” on the sidebar.\n ", "About",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void MinimiseButtonImage_Click(object sender, EventArgs e)
@@ -303,24 +308,47 @@ namespace StudyTracker
 
         private void LogsImage_Click(object sender, EventArgs e)
         {
-            if (StudyTrackerForm.logList.Count == 0)
+            if (LogData.StudyLogs.Count == 0)
             {
                 MessageBox.Show("There are no logs to display. Click the green plus icon to add a study session manually or press \"Start\" to start an automatic session.",
                     "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                StudyTrackerForm.ReadJsonLogs(); //reads latest version of logs before starting database
-                LogsDB.StudyLogsDBRef= StudyTrackerForm.logList;
+                LogData.ReadFromFile();                                  // get  latest version of logs before starting database
                 LogsDB.LogsDBRef.StartPosition = FormStartPosition.CenterScreen;
                 LogsDB.LogsDBRef.ShowDialog();
                 if (ActiveForm == StudyTrackerForm.StudyTracker)
                 {
-                    StudyTrackerForm.ReadJsonLogs();
+                    LogData.ReadFromFile();
                     StudyTrackerForm.StudyTracker.ClearPanels();
                     StudyTrackerForm.StudyTracker.GenerateRecentLogs();
                 }
 
+            }
+        }
+
+        private void SideBar_BookImage_Click(object sender, EventArgs e)
+        {
+            if (LogData.StudyLogs.Count == 0)
+            {
+                MessageBox.Show("No statistics are available yet. You don't have any study logs! Check back later!", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                if (IsStatsOpen)
+                {
+                    StatsForm.StatsRef.Hide();
+                    IsStatsOpen = false;
+                }
+                else
+                {
+                    IsStatsOpen = true;
+                    StatsForm.StatsRef.StartPosition = FormStartPosition.Manual;
+                    StatsForm.StatsRef.Location = new Point(ActiveForm.Location.X - StatsForm.StatsRef.Width - 15, ActiveForm.Location.Y);
+                    StatsForm.StatsRef.Show();
+                    StatsForm.StatsRef.Focus();
+                }
             }
         }
     }

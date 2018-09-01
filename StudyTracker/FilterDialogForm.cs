@@ -23,7 +23,6 @@ namespace StudyTracker
         {
             InitializeComponent();
             filterDialog = this;
-            FilterDialogBindingRef = LogsDB.StudyLogsDBRef;
             this.Controls.Add(FilterGroup);
 
             // references to checkboxes for apply button reference
@@ -47,8 +46,6 @@ namespace StudyTracker
                 return filterDialog;
             }
         }
-        public static List<StudyLog> FilterDialogBindingRef { get; set; }
-
 
         private void FilterCheckBoxes_CheckedChanged(object sender, EventArgs e)
         {
@@ -126,7 +123,7 @@ namespace StudyTracker
                     }
                 }
             }
-            BindingListView<StudyLog> filteredList = new BindingListView<StudyLog>(FilterDialogBindingRef);
+            BindingListView<StudyLog> filteredList = new BindingListView<StudyLog>(LogData.StudyLogs);
 
             LogsDB.dataGridViewRef.DataSource = filteredList;
             LogsDB.dataGridViewRef.Sort(LogsDB.dataGridViewRef.Columns["logsEndDate"], ListSortDirection.Descending);
@@ -145,7 +142,7 @@ namespace StudyTracker
             List<String> topics = new List<string>();
 
 
-            foreach (StudyLog log in FilterDialogBindingRef)            // get topics from database
+            foreach (StudyLog log in LogData.StudyLogs)            // get topics from database
             {
                 topics.Add(log.Topic);
             }
@@ -187,13 +184,13 @@ namespace StudyTracker
             // gather queries independtly 
             if (TopicFilterCheckBox.Checked == true)
             {
-                topicQuery = from logs in FilterDialogBindingRef
+                topicQuery = from logs in LogData.StudyLogs
                              where logs.Topic == TopicFilterComboBox.SelectedItem.ToString()
                              select logs;
             }
             if (DateFilterCheckBox.Checked == true)
             {
-                dateQuery = from logs in FilterDialogBindingRef
+                dateQuery = from logs in LogData.StudyLogs
                             where logs.EndDate.Date == DatePickerFilter.Value.Date || logs.StartDate.Date == DatePickerFilter.Value.Date
                             select logs;
             }
@@ -201,25 +198,25 @@ namespace StudyTracker
             {
                 if (TimeFrameComboBox.SelectedItem.ToString() == "Today")
                 {
-                    timeFrameQuery = from logs in FilterDialogBindingRef
+                    timeFrameQuery = from logs in LogData.StudyLogs
                                      where logs.EndDate.Date == DateTime.Now.Date || logs.StartDate.Date == DateTime.Now.Date
                                      select logs;
                 }
                 else if (TimeFrameComboBox.SelectedItem.ToString() == "Last 7 days")
                 {
-                    timeFrameQuery = from logs in FilterDialogBindingRef
+                    timeFrameQuery = from logs in LogData.StudyLogs
                                      where logs.EndDate.Date <= DateTime.Now.Date && logs.EndDate.Date >= DateTime.Now.Date.AddDays(-7)
                                      select logs;
                 }
                 else if (TimeFrameComboBox.SelectedItem.ToString() == "Last 30 days")
                 {
-                    timeFrameQuery = from logs in FilterDialogBindingRef
+                    timeFrameQuery = from logs in LogData.StudyLogs
                                      where logs.EndDate.Date <= DateTime.Now.Date && logs.EndDate.Date >= DateTime.Now.Date.AddDays(-30)
                                      select logs;
                 }
                 else if (TimeFrameComboBox.SelectedItem.ToString() == "last 12 months")
                 {
-                    timeFrameQuery = from logs in FilterDialogBindingRef
+                    timeFrameQuery = from logs in LogData.StudyLogs
                                      where logs.EndDate.Date <= DateTime.Now.Date && logs.EndDate.Date >= DateTime.Now.Date.AddDays(-365)
                                      select logs;
                 }

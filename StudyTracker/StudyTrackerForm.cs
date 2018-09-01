@@ -103,7 +103,7 @@ namespace StudyTracker
             float fontSize = 10f;
             Point lastLogPos = GetIntialLogPos();               // Gets the X, Y co-ordinates of the first recent log panel and then changes Y each time through loop
 
-            for (int i = 0; i < logList.Count && i < maxRecentLogs; i++)
+            for (int i = 0; i < LogData.StudyLogs.Count && i < maxRecentLogs; i++)
             {
                 // --------------Panels -----------------//
                 panels.Add(new Panel());
@@ -112,7 +112,6 @@ namespace StudyTracker
                 panels[i].Location = lastLogPos;
                 panels[i].Size = logPanelDimensions;
                 panels[i].Name = "RecentLogPanel" + i.ToString();
-                panels[i].Click += RecentLogPanel_Click;                    //select panel by highlighting
                 panels[i].MouseEnter += RecentLogPanels_MouseEnter;         // display edit and delete icons for that panel
                 if (AddedNewEntry)
                 {
@@ -205,7 +204,7 @@ namespace StudyTracker
                 panels[i].Controls.Add(topicValue[i]);
                 topicValue[i].Location = new Point(topics[i].Location.X + topics[i].Width + spacing, topics[i].Location.Y);
                 topicValue[i].AutoSize = true;
-                topicValue[i].Text = $"{logList[i].Topic}";
+                topicValue[i].Text = $"{LogData.StudyLogs[i].Topic}";
                 topicValue[i].BackColor = Color.Transparent;
                 topicValue[i].Font = new Font("lucidia Bright", fontSize, FontStyle.Bold, GraphicsUnit.Point);
                 //----------------------------------------//
@@ -226,13 +225,13 @@ namespace StudyTracker
                 durationValue.Add(new Label());
                 panels[i].Controls.Add(durationValue[i]);
                 durationValue[i].AutoSize = true;
-                if (logList[i].TimeStudied.Hours < 1)
+                if (LogData.StudyLogs[i].TimeStudied.Hours < 1)
                 {
-                    durationValue[i].Text = $"{logList[i].TimeStudied.Minutes} minutes, and {logList[i].TimeStudied.Seconds} seconds.";
+                    durationValue[i].Text = $"{LogData.StudyLogs[i].TimeStudied.Minutes} minutes, and {LogData.StudyLogs[i].TimeStudied.Seconds} seconds.";
                 }
                 else
                 {
-                    durationValue[i].Text = $"{logList[i].TimeStudied.Hours} hours, {logList[i].TimeStudied.Minutes} minutes, and {logList[i].TimeStudied.Seconds} seconds.";
+                    durationValue[i].Text = $"{LogData.StudyLogs[i].TimeStudied.Hours} hours, {LogData.StudyLogs[i].TimeStudied.Minutes} minutes, and {LogData.StudyLogs[i].TimeStudied.Seconds} seconds.";
                 }
                 durationValue[i].Location = new Point(topicValue[i].Location.X, durationText[i].Location.Y);
                 durationValue[i].BackColor = Color.Transparent;
@@ -260,9 +259,9 @@ namespace StudyTracker
                 dateStudiedValue[i].BackColor = Color.Transparent;
                 dateStudiedValue[i].Font = new Font("Lucidia Bright", fontSize, FontStyle.Italic, GraphicsUnit.Point);
                 dateStudiedValue[i].Location = new Point(durationValue[i].Location.X, durationValue[i].Location.Y + spacing - 10);
-                if (logList[i].EndDate.Day == DateTime.Now.Day)
+                if (LogData.StudyLogs[i].EndDate.Day == DateTime.Now.Day)
                 {
-                    var timePassed = DateTime.Now.Subtract(logList[i].EndDate);
+                    var timePassed = DateTime.Now.Subtract(LogData.StudyLogs[i].EndDate);
 
                     if (timePassed.Minutes == 0 && timePassed.Hours < 1)
                     {
@@ -279,7 +278,7 @@ namespace StudyTracker
                     }
                 }
                 else
-                    dateStudiedValue[i].Text = $"{logList[i].EndDate.ToShortDateString()}";
+                    dateStudiedValue[i].Text = $"{LogData.StudyLogs[i].EndDate.ToShortDateString()}";
 
                 //----------------------------------------//
 
@@ -301,7 +300,7 @@ namespace StudyTracker
                 timeStartValue[i].BackColor = Color.Transparent;
                 timeStartValue[i].Font = new Font("Lucidia Bright", fontSize, FontStyle.Italic, GraphicsUnit.Point);
                 timeStartValue[i].Location = new Point(dateStudiedValue[i].Location.X, dateStudied[i].Location.Y + spacing - 10);
-                timeStartValue[i].Text = $"{logList[i].StartTime.ToShortTimeString()}";
+                timeStartValue[i].Text = $"{LogData.StudyLogs[i].StartTime.ToShortTimeString()}";
                 //--------------------------------------------//
 
 
@@ -323,7 +322,7 @@ namespace StudyTracker
                 timeFinishedValue[i].BackColor = Color.Transparent;
                 timeFinishedValue[i].Font = new Font("Lucidia Bright", fontSize, FontStyle.Italic, GraphicsUnit.Point);
                 timeFinishedValue[i].Location = new Point(timeFinished[i].Location.X + timeFinished[i].Width + spacing, timeStart[i].Location.Y);
-                timeFinishedValue[i].Text = $"{logList[i].EndTime.ToShortTimeString()}";
+                timeFinishedValue[i].Text = $"{LogData.StudyLogs[i].EndTime.ToShortTimeString()}";
                 //--------------------------------------------//
             }
 
@@ -352,11 +351,8 @@ namespace StudyTracker
 
         private static StudyTrackerForm studyTracker;   // reference to this form that can be accessed by property 
         private static Label startButtonLabel;
-        public static List<StudyLog> logList = new List<StudyLog>();
-        public static StudyLog newLogFromAddForm = new StudyLog();
         private static Panel selectedPanel = new Panel();
         private static int ScrollPosition = new int();
-
 
         public StudyTrackerForm()
         {
@@ -454,39 +450,7 @@ namespace StudyTracker
 
 
         }
-        public static void ReadJsonLogs()
-        {
-            // Fetches log data from log
-            if (File.Exists(StudyDir.logsDir))
-            {
-                try
-                {
-                    var jsonData = File.ReadAllText(StudyDir.logsDir);
-                    logList = JsonConvert.DeserializeObject<List<StudyLog>>(jsonData)
-                                                    ?? new List<StudyLog>();
-                    // order it by most recent first
-                    var sortedLogList = from logs in logList
-                                        orderby logs.EndDate descending
-                                        select logs;
-                    logList = sortedLogList.ToList();
-
-                }
-                catch (IOException error)
-                {
-                    MessageBox.Show("Could not open log file.\n" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (JsonException error)
-                {
-                    MessageBox.Show("Error with Json Deserialization\n" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Log File doesn't exist yet.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
-
+        
         private void StudyTrackerForm_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible == true)
@@ -496,12 +460,10 @@ namespace StudyTracker
                 studyTracker.Focus();
                 if (File.Exists(StudyDir.logsDir))
                 {
-                    ReadJsonLogs();
+                    LogData.ReadFromFile();
                     GenerateRecentLogs();
-                    //pass loglist reference to database
-                    LogsDB.StudyLogsDBRef = logList;
 
-                    if (logList.Count == 0)
+                    if (LogData.StudyLogs.Count == 0)
                     {
                         // Log file exists but there are no logs in it
 
@@ -519,17 +481,7 @@ namespace StudyTracker
         {
             RecentLogsContainer.Focus();
         }
-        private void RecentLogPanel_Click(object sender, EventArgs e)
-        {
-            //Panel clickedPanel = (Panel)sender;
-            ////set all to default and then set the one that was clicked to highlighted
-            //foreach (var panel in panels)
-            //{
-            //    panel.BackgroundImage = Properties.Resources.Recent_Logs_none;
-            //}
-            //clickedPanel.BackgroundImage = Properties.Resources.Recent_Logs;
-            //selectedPanel = clickedPanel;
-        }
+
         private void RefreshRecentLogs_Tick(object sender, EventArgs e)
         {
             if (Debugger.IsAttached)
@@ -540,9 +492,9 @@ namespace StudyTracker
             {
                 for (int i = 0; i < dateStudiedValue.Count; i++)
                 {
-                    if (logList[i].EndDate.Day == DateTime.Now.Day)
+                    if (LogData.StudyLogs[i].EndDate.Day == DateTime.Now.Day)
                     {
-                        var timePassed = DateTime.Now.Subtract(logList[i].EndDate);
+                        var timePassed = DateTime.Now.Subtract(LogData.StudyLogs[i].EndDate);
 
                         if (timePassed.Minutes == 0 && timePassed.Hours < 1)
                         {
@@ -559,7 +511,7 @@ namespace StudyTracker
                         }
                     }
                     else
-                        dateStudiedValue[i].Text = $"{logList[i].EndDate.ToShortDateString()}";
+                        dateStudiedValue[i].Text = $"{LogData.StudyLogs[i].EndDate.ToShortDateString()}";
                 }
             }
            
@@ -575,7 +527,7 @@ namespace StudyTracker
                 if (deleteIcon.Parent == panels[i])
                 {
                     // Correct index to remove logList 
-                    logList.RemoveAt(i);
+                    LogData.StudyLogs.RemoveAt(i);
                 }
             }
 
@@ -584,29 +536,11 @@ namespace StudyTracker
             GenerateRecentLogs();
             RecentLogsContainer.VerticalScroll.Value = ScrollPosition;
 
-            // Write new loglist to file --         CAUTION loglist needs to be reversed again as it has been reversed by stack
-            Stack<StudyLog> reverseOrder = new Stack<StudyLog>();
-            foreach (var log in logList)
-            {
-                reverseOrder.Push(log);
-            }
-            logList = reverseOrder.ToList();
-
-            // Safe to write to file now
-            var jsonData = JsonConvert.SerializeObject(logList);
-            File.WriteAllText(StudyDir.logsDir, jsonData);
-
-
-            // Reverse again
-            reverseOrder = new Stack<StudyLog>();
-            foreach (var log in logList)
-            {
-                reverseOrder.Push(log);
-            }
-            logList = reverseOrder.ToList();
+            // Write changes to file
+            LogData.WriteToFile();
 
             // If loglist is now empty, show empty panel notification
-            if (logList.Count == 0)
+            if (LogData.StudyLogs.Count == 0)
             {
                 AddPanelNothingHere();
             }
@@ -616,57 +550,31 @@ namespace StudyTracker
         private void EditButton_Click(object sender, EventArgs e)
         {
             PictureBox selectedEdit = (PictureBox)sender;
-            int editIndex = 0;
+
             for (int i = 0; i < panels.Count; i++)
             {
                 if (selectedEdit.Parent == panels[i])
                 {
                     // correct index of panel to edit
-                    editIndex = i;
+                    EditRecentLog.EditIndex = i;
                 }
             }
 
-            //Pass studyLog for editing to StudyLogRef inside EditRecentLog
-            EditRecentLog.EditStudyLogRef = logList[editIndex];
-
-            DialogResult result;
+            
             EditRecentLog.EditLogRef.Location = new Point(StudyTracker.Location.X + StudyTracker.Width / 2, StudyTracker.Location.Y );
-            result = EditRecentLog.EditLogRef.ShowDialog();
-            //EditRecentLog.EditLogRef.StartPosition = FormStartPosition.CenterParent;
-            EditRecentLog.EditLogRef.Focus();
+            DialogResult result = EditRecentLog.EditLogRef.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                // Order by newwest first and then Serialize and write to file
-
-                logList[editIndex] = EditRecentLog.EditStudyLogRef;
-
-                try
-                {
-                    var orderedLogList = from logs in logList
-                                         orderby logs.EndDate descending
-                                         select logs;
-                    logList = orderedLogList.ToList();
-
-                    var JsonData = JsonConvert.SerializeObject(logList);
-                    File.WriteAllText(StudyDir.logsDir, JsonData);
-
-                }
-                catch (JsonSerializationException er)
-                {
-                    MessageBox.Show("Error in serializing to JSON after editing recent log.\n" + er.Message);
-                }
+                // Save changes by writing to file
+                LogData.WriteToFile();
                 ClearPanels();
                 GenerateRecentLogs();
-
             }
             else 
             {
                 // do nothing 
-               
             }
-            
-            
         }
         private void RecentLogPanels_MouseEnter(object sender, EventArgs e)
         {
@@ -711,15 +619,8 @@ namespace StudyTracker
                 // show confirmation 
                 MessageBox.Show("Your log has been saved.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                logList.Add(newLogFromAddForm);
-                //order logs and write to file
-
-                var orderedLogs = from logs in logList
-                                  orderby logs.EndDate descending
-                                  select logs;
-                logList = orderedLogs.ToList();
-                var jsonData = JsonConvert.SerializeObject(logList);
-                File.WriteAllText(StudyDir.logsDir, jsonData);
+                // Write logs to file
+                LogData.WriteToFile();
 
                 ClearPanels();
                 GenerateRecentLogs();

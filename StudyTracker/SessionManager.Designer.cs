@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SessionManagerForm));
             this.timerLabel = new System.Windows.Forms.Label();
             this.pauseButton = new System.Windows.Forms.Button();
             this.finishButton = new System.Windows.Forms.Button();
@@ -65,7 +66,7 @@
             this.pauseButton.Margin = new System.Windows.Forms.Padding(2);
             this.pauseButton.Name = "pauseButton";
             this.pauseButton.Size = new System.Drawing.Size(132, 50);
-            this.pauseButton.TabIndex = 6;
+            this.pauseButton.TabIndex = 0;
             this.pauseButton.Text = "PAUSE";
             this.pauseButton.UseVisualStyleBackColor = false;
             this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
@@ -81,7 +82,7 @@
             this.finishButton.Margin = new System.Windows.Forms.Padding(2);
             this.finishButton.Name = "finishButton";
             this.finishButton.Size = new System.Drawing.Size(138, 50);
-            this.finishButton.TabIndex = 7;
+            this.finishButton.TabIndex = 1;
             this.finishButton.Text = "FINISHED";
             this.finishButton.UseVisualStyleBackColor = false;
             this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
@@ -150,6 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 700);
             this.Controls.Add(this.WindowPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SessionManagerForm";
             this.Text = "Study Tracker";
             this.Load += new System.EventHandler(this.SessionManagerForm_Load);

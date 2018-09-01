@@ -72,7 +72,7 @@
             this.TimeFrameFilterCheckBox.Location = new System.Drawing.Point(94, 97);
             this.TimeFrameFilterCheckBox.Name = "TimeFrameFilterCheckBox";
             this.TimeFrameFilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.TimeFrameFilterCheckBox.TabIndex = 9;
+            this.TimeFrameFilterCheckBox.TabIndex = 2;
             this.TimeFrameFilterCheckBox.UseVisualStyleBackColor = true;
             this.TimeFrameFilterCheckBox.Click += new System.EventHandler(this.FilterCheckBoxes_CheckedChanged);
             // 
@@ -82,7 +82,7 @@
             this.TopicFilterCheckBox.Location = new System.Drawing.Point(94, 49);
             this.TopicFilterCheckBox.Name = "TopicFilterCheckBox";
             this.TopicFilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.TopicFilterCheckBox.TabIndex = 8;
+            this.TopicFilterCheckBox.TabIndex = 0;
             this.TopicFilterCheckBox.UseVisualStyleBackColor = true;
             this.TopicFilterCheckBox.Click += new System.EventHandler(this.FilterCheckBoxes_CheckedChanged);
             // 
@@ -92,7 +92,7 @@
             this.DateFilterCheckBox.Location = new System.Drawing.Point(94, 146);
             this.DateFilterCheckBox.Name = "DateFilterCheckBox";
             this.DateFilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.DateFilterCheckBox.TabIndex = 7;
+            this.DateFilterCheckBox.TabIndex = 4;
             this.DateFilterCheckBox.UseVisualStyleBackColor = true;
             this.DateFilterCheckBox.Click += new System.EventHandler(this.FilterCheckBoxes_CheckedChanged);
             // 
@@ -104,7 +104,7 @@
             this.DatePickerFilter.Location = new System.Drawing.Point(118, 141);
             this.DatePickerFilter.Name = "DatePickerFilter";
             this.DatePickerFilter.Size = new System.Drawing.Size(121, 20);
-            this.DatePickerFilter.TabIndex = 6;
+            this.DatePickerFilter.TabIndex = 5;
             // 
             // DateFilterLabel
             // 
@@ -125,7 +125,7 @@
             this.TopicFilterComboBox.Name = "TopicFilterComboBox";
             this.TopicFilterComboBox.Size = new System.Drawing.Size(121, 21);
             this.TopicFilterComboBox.Sorted = true;
-            this.TopicFilterComboBox.TabIndex = 3;
+            this.TopicFilterComboBox.TabIndex = 1;
             this.TopicFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.TopicFilterComboBox_SelectedIndexChanged);
             // 
             // TopicFilterLabel
@@ -162,7 +162,7 @@
             this.TimeFrameComboBox.Location = new System.Drawing.Point(118, 94);
             this.TimeFrameComboBox.Name = "TimeFrameComboBox";
             this.TimeFrameComboBox.Size = new System.Drawing.Size(121, 21);
-            this.TimeFrameComboBox.TabIndex = 0;
+            this.TimeFrameComboBox.TabIndex = 3;
             // 
             // ApplyFilterButton
             // 
@@ -171,7 +171,7 @@
             this.ApplyFilterButton.Location = new System.Drawing.Point(130, 266);
             this.ApplyFilterButton.Name = "ApplyFilterButton";
             this.ApplyFilterButton.Size = new System.Drawing.Size(75, 23);
-            this.ApplyFilterButton.TabIndex = 1;
+            this.ApplyFilterButton.TabIndex = 0;
             this.ApplyFilterButton.Text = "Apply";
             this.ApplyFilterButton.UseVisualStyleBackColor = true;
             this.ApplyFilterButton.Click += new System.EventHandler(this.ApplyFilterButton_Click);
@@ -193,7 +193,7 @@
             this.OkayFilterDialogButton.Location = new System.Drawing.Point(211, 266);
             this.OkayFilterDialogButton.Name = "OkayFilterDialogButton";
             this.OkayFilterDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.OkayFilterDialogButton.TabIndex = 2;
+            this.OkayFilterDialogButton.TabIndex = 1;
             this.OkayFilterDialogButton.Text = "OK";
             this.OkayFilterDialogButton.UseVisualStyleBackColor = true;
             this.OkayFilterDialogButton.Click += new System.EventHandler(this.OkayFilterDialogButton_Click);

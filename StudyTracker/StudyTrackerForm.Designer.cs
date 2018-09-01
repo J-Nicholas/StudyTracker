@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudyTrackerForm));
             this.label1 = new System.Windows.Forms.Label();
             this.RecentLogsContainer = new System.Windows.Forms.Panel();
             this.RefreshRecentLogs = new System.Windows.Forms.Timer(this.components);
@@ -44,7 +45,7 @@
             this.label1.Location = new System.Drawing.Point(240, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 23);
-            this.label1.TabIndex = 20;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Recent Study Logs:";
             // 
             // RecentLogsContainer
@@ -53,7 +54,7 @@
             this.RecentLogsContainer.Location = new System.Drawing.Point(234, 153);
             this.RecentLogsContainer.Name = "RecentLogsContainer";
             this.RecentLogsContainer.Size = new System.Drawing.Size(437, 528);
-            this.RecentLogsContainer.TabIndex = 19;
+            this.RecentLogsContainer.TabIndex = 1;
             this.RecentLogsContainer.MouseEnter += new System.EventHandler(this.RecentLogsContainer_Enter);
             // 
             // RefreshRecentLogs
@@ -82,6 +83,7 @@
             this.Controls.Add(this.AddLogButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RecentLogsContainer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StudyTrackerForm";
             this.Text = "Study Tracker";
             this.Load += new System.EventHandler(this.StudyTrackerForm_Load);
