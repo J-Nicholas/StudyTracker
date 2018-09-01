@@ -28,9 +28,9 @@ namespace StudyTracker
         private Dictionary<TimeFrame, Func<StudyLog, bool>> filterDictionaryTopic = new Dictionary<TimeFrame, Func<StudyLog, bool>>
         {
             [TimeFrame.Today] = (log) => log.Topic == topicName && log.EndDate.Date == DateTime.Now.Date,
-            [TimeFrame.ThisWeek] = (log) => log.Topic == topicName && log.EndDate <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-7),
-            [TimeFrame.ThisMonth] = (log) => log.Topic == topicName && log.EndDate <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-30),
-            [TimeFrame.ThisYear] = (log) => log.Topic == topicName && log.EndDate <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-365),
+            [TimeFrame.ThisWeek] = (log) => log.Topic == topicName && log.EndDate.Date <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-7),
+            [TimeFrame.ThisMonth] = (log) => log.Topic == topicName && log.EndDate.Date <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-30),
+            [TimeFrame.ThisYear] = (log) => log.Topic == topicName && log.EndDate.Date <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-365),
             [TimeFrame.Total] = (log) => log.Topic == topicName,
         };
         /// <summary>
@@ -39,10 +39,10 @@ namespace StudyTracker
         private Dictionary<TimeFrame, Func<StudyLog, bool>> filterDictionaryAll = new Dictionary<TimeFrame, Func<StudyLog, bool>>
         {
             [TimeFrame.Today] = (log) => log.EndDate.Date == DateTime.Now.Date,
-            [TimeFrame.ThisWeek] = (log) => log.EndDate <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-7),
-            [TimeFrame.ThisMonth] = (log) => log.EndDate <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-30),
-            [TimeFrame.ThisYear] = (log) => log.EndDate <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-365),
-            [TimeFrame.Total] = (log) => log.EndDate < DateTime.Now,
+            [TimeFrame.ThisWeek] = (log) => log.EndDate.Date <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-7),
+            [TimeFrame.ThisMonth] = (log) => log.EndDate.Date <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-30),
+            [TimeFrame.ThisYear] = (log) => log.EndDate.Date <= DateTime.Now.Date && log.EndDate.Date >= DateTime.Now.Date.AddDays(-365),
+            [TimeFrame.Total] = (log) => log.EndTime.TimeOfDay < DateTime.Now.TimeOfDay,
         };
 
         public StatsForm()
