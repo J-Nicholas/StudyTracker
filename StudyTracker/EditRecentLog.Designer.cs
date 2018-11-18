@@ -44,6 +44,8 @@
             this.timeLabel = new System.Windows.Forms.Label();
             this.dateBox = new System.Windows.Forms.TextBox();
             this.dateLabel = new System.Windows.Forms.Label();
+            this.TimeStudiedBox = new System.Windows.Forms.TextBox();
+            this.TimeStudiedLabel = new System.Windows.Forms.Label();
             this.SetupPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +54,8 @@
             this.SetupPanel.BackColor = System.Drawing.Color.Transparent;
             this.SetupPanel.BackgroundImage = global::StudyTracker.Properties.Resources.Form_Background_Alt;
             this.SetupPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SetupPanel.Controls.Add(this.TimeStudiedBox);
+            this.SetupPanel.Controls.Add(this.TimeStudiedLabel);
             this.SetupPanel.Controls.Add(this.deleteButton);
             this.SetupPanel.Controls.Add(this.saveButton);
             this.SetupPanel.Controls.Add(this.TimeFinishedBox);
@@ -273,6 +277,32 @@
             this.dateLabel.TabIndex = 11;
             this.dateLabel.Text = "Date:";
             // 
+            // TimeStudiedBox
+            // 
+            this.TimeStudiedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(230)))));
+            this.TimeStudiedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TimeStudiedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeStudiedBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.TimeStudiedBox.Location = new System.Drawing.Point(270, 277);
+            this.TimeStudiedBox.Margin = new System.Windows.Forms.Padding(2);
+            this.TimeStudiedBox.Name = "TimeStudiedBox";
+            this.TimeStudiedBox.Size = new System.Drawing.Size(88, 16);
+            this.TimeStudiedBox.TabIndex = 19;
+            this.TimeStudiedBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TimeStudiedLabel
+            // 
+            this.TimeStudiedLabel.AutoSize = true;
+            this.TimeStudiedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TimeStudiedLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeStudiedLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
+            this.TimeStudiedLabel.Location = new System.Drawing.Point(156, 277);
+            this.TimeStudiedLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.TimeStudiedLabel.Name = "TimeStudiedLabel";
+            this.TimeStudiedLabel.Size = new System.Drawing.Size(101, 16);
+            this.TimeStudiedLabel.TabIndex = 20;
+            this.TimeStudiedLabel.Text = "Time Studied:";
+            // 
             // EditRecentLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +342,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.TextBox TimeStudiedBox;
+        private System.Windows.Forms.Label TimeStudiedLabel;
     }
 }

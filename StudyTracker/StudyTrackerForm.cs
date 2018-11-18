@@ -261,7 +261,7 @@ namespace StudyTracker
                 dateStudiedValue[i].Location = new Point(durationValue[i].Location.X, durationValue[i].Location.Y + spacing - 10);
                 if (LogData.StudyLogs[i].EndDate.Day == DateTime.Now.Day)
                 {
-                    var timePassed = DateTime.Now.Subtract(LogData.StudyLogs[i].EndDate);
+                    var timePassed = DateTime.Now.TimeOfDay.Subtract(LogData.StudyLogs[i].EndTime.TimeOfDay);
 
                     if (timePassed.Minutes == 0 && timePassed.Hours < 1)
                     {

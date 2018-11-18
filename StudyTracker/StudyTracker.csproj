@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,7 +13,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Study Tracker\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +26,7 @@
     <ProductName>Study Tracker</ProductName>
     <PublisherName>Johnathan Nicholas</PublisherName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -104,7 +103,6 @@
     <Compile Include="EditRecentLog.Designer.cs">
       <DependentUpon>EditRecentLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExcelConverter.cs" />
     <Compile Include="FilterDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,35 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Stats_Title.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>9</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Study_Tracker_Icon.png" />

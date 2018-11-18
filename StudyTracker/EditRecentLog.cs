@@ -50,6 +50,8 @@ namespace StudyTracker
             dateBox.Text = StudylogToEdit.StartDate.ToShortDateString();
             descriptionBox.Text = StudylogToEdit.Description;
             TimeFinishedBox.Text = StudylogToEdit.EndTime.ToShortTimeString();
+            TimeStudiedBox.Text = StudylogToEdit.TimeStudied.ToString();
+
         }
         private bool ValidateTextBoxes()
         {
@@ -57,6 +59,7 @@ namespace StudyTracker
             DateTime desiredStartDate;
             TimeSpan tempStartTime;
             TimeSpan tempEndTime;
+            TimeSpan tempTimeStudied;
 
             desiredStartDate = DateTime.Parse(dateBox.Text);
             TimeSpan.TryParse(StartTimeBox.Text, out tempStartTime);
@@ -117,6 +120,11 @@ namespace StudyTracker
                 MessageBox.Show("Time finished cannot be in the future.");
                 return false;
             }
+            else if (!TimeSpan.TryParse(TimeStudiedBox.Text, out tempTimeStudied))
+            {
+                MessageBox.Show("Not a valid format for time studied. Uuse the format: hh:mm.ss.");
+                return false;
+            }
             else
             {
                 return true;
@@ -132,6 +140,7 @@ namespace StudyTracker
                 StudylogToEdit.EndTime = DateTime.Parse(TimeFinishedBox.Text);
                 StudylogToEdit.StartDate = DateTime.Parse(dateBox.Text);
                 StudylogToEdit.Description = descriptionBox.Text;
+                StudylogToEdit.TimeStudied = TimeSpan.Parse(TimeStudiedBox.Text);
 
                 //testing 
 
@@ -146,17 +155,22 @@ namespace StudyTracker
 
                         // If started before 12 am and finished after 12 am and less than start time
 
-                        TimeSpan oneDay = new TimeSpan(1, 0, 0, 0);
-                        TimeSpan timeBeforeTwelve = oneDay.Subtract(StudylogToEdit.StartTime.TimeOfDay);
+                        // ----------------REMOVED DUE TO BUG   -------------------------
+                        //TimeSpan oneDay = new TimeSpan(1, 0, 0, 0);
+                        //TimeSpan timeBeforeTwelve = oneDay.Subtract(StudylogToEdit.StartTime.TimeOfDay);
 
-                        TimeSpan tempTimeStudied = timeBeforeTwelve + StudylogToEdit.EndTime.TimeOfDay;
+                        //TimeSpan tempTimeStudied = timeBeforeTwelve + StudylogToEdit.EndTime.TimeOfDay;
 
-                        StudylogToEdit.TimeStudied = tempTimeStudied;
+                        //StudylogToEdit.TimeStudied = tempTimeStudied;
+                        // --------------- REMOVED DUE TO BUG ----------------------------
                     }
                 }
                 else
                 {
-                    StudylogToEdit.TimeStudied = StudylogToEdit.EndTime.Subtract(StudylogToEdit.StartTime);
+                    // --------------- REMOVED DUE TO BUG ----------------------------
+                    //StudylogToEdit.TimeStudied = StudylogToEdit.EndTime.Subtract(StudylogToEdit.StartTime);
+                    // --------------- REMOVED DUE TO BUG ----------------------------
+
                     StudylogToEdit.EndDate = StudylogToEdit.StartDate + StudylogToEdit.EndTime.TimeOfDay;
                 }
                 // Update the log that is being changed with latest changes
