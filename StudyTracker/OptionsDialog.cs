@@ -75,6 +75,7 @@ namespace StudyTracker
         {
             var jsonData = JsonConvert.SerializeObject(settings);
             File.WriteAllText(StudyDir.settingsDir, jsonData);
+            OnOptionsSaved();     // delegate notifying subscribers to event
         }
 
         private void OptionsMenu_Load(object sender, EventArgs e)
@@ -87,6 +88,14 @@ namespace StudyTracker
                     disableFloatButton.Enabled = true;
                 }
             }
+        }
+
+        // Event handler delegate which notifies subscribers when options have been saved.
+        public event EventHandler OptionsSaved;
+
+        protected virtual void OnOptionsSaved()
+        {
+            OptionsSaved?.Invoke(this, EventArgs.Empty); // ?. notation means not null
         }
     }
 }

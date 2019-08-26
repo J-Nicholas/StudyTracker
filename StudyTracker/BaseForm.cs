@@ -37,7 +37,6 @@ namespace StudyTracker
             InitializeComponent();
             baseFormRef = this;
             this.DoubleBuffered = true;
-
             CloseButtonImage.Parent = DragWindow;                                                               // location is now relatvie to dragwindow. so 
             CloseButtonImage.Location = new Point(DragWindow.Width - (CloseButtonImage.Width + 7), 3);          // button should be image.width number of pixels from 
             MinimiseButtonImage.Parent = DragWindow;                                                            // right + 7 for space and 3 from top
@@ -154,6 +153,7 @@ namespace StudyTracker
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
+            OnSideBarMenuClicked();
             AboutBox.ShowDialog();
         }
 
@@ -189,23 +189,9 @@ namespace StudyTracker
             IsDragging = false;
         }
 
-        private void StartButton_Click(object sender, EventArgs e)
+        public virtual void StartButton_Click(object sender, EventArgs e)
         {
-
-            if (ActiveForm == SessionManagerForm.SessionManagerRef)
-            {
-                // Label says Home, allow user to return to main menu, ask them if they are sure, their work wont' be saved until they click finsih button
-                DialogResult result = MessageBox.Show("Are you sure you want to return to Home?\nYour study session wont't be logged unless you click finish.",
-                        "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    StudyTrackerForm.StudyTracker.Show();
-                    SessionManagerForm.SessionManagerRef.Hide();
-                    StudyTrackerForm.StudyTracker.Location = SessionManagerForm.SessionManagerRef.Location;
-                    StudyTrackerForm.StudyTracker.Focus();
-                }
-            }
-            else if (ActiveForm == StudyTrackerForm.StudyTracker)
+            if (ActiveForm == StudyTrackerForm.StudyTracker)
             {
                 SessionSetupForm.SessionSetup.Show();
                 StudyTrackerForm.StudyTracker.Hide();
@@ -295,6 +281,7 @@ namespace StudyTracker
 
         private void StatisticsButton_Click(object sender, EventArgs e)
         {
+            OnSideBarMenuClicked();
             if (LogData.StudyLogs.Count == 0)
             {
                 MessageBox.Show("No statistics are available yet. You don't have any study logs! Check back later!", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -320,7 +307,14 @@ namespace StudyTracker
         private void optionsButton_Click(object sender, EventArgs e)
         {
             Options.ShowDialog();
-            
+            OnSideBarMenuClicked();
+        }
+
+        public event EventHandler SideBarMenu_Click;
+
+        protected virtual void OnSideBarMenuClicked()
+        {
+            SideBarMenu_Click?.Invoke(this, EventArgs.Empty);
         }
     }
 }

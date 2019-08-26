@@ -159,6 +159,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SessionManagerForm";
             this.Text = "Study Tracker";
+            this.Activated += new System.EventHandler(this.SessionManagerForm_Activated);
             this.Deactivate += new System.EventHandler(this.SessionManagerForm_Deactivate);
             this.Load += new System.EventHandler(this.SessionManagerForm_Load);
             this.VisibleChanged += new System.EventHandler(this.SessionManagerForm_VisibleChanged);

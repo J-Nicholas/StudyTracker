@@ -46,6 +46,7 @@
             this.pauseButtonFloat.TabIndex = 1;
             this.pauseButtonFloat.Text = "PAUSE";
             this.pauseButtonFloat.UseVisualStyleBackColor = false;
+            this.pauseButtonFloat.Click += new System.EventHandler(this.pauseButtonFloat_Click);
             // 
             // FloatWindow
             // 
@@ -63,6 +64,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Study Tracker";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FloatWindow_FormClosing);
             this.ResumeLayout(false);
 
         }

@@ -12,21 +12,42 @@ using System.Drawing.Text;
 using Newtonsoft.Json;
 using System.IO;
 
+
 namespace StudyTracker
 {
     public partial class SessionManagerForm : BaseForm
     {
         private TimeSpan timeElapsed;
+        private bool finishedStudying = false;
+        private bool shouldPause = false;
+        private FloatWindow floater;
         public static Stopwatch stopWatch = new Stopwatch();
         public static StudyLog NewStudyLog { get; set; }
 
+
         private static SessionManagerForm sessionManagerRef;
-        private bool shouldPause = false;
 
         private SessionManagerForm()
         {
             InitializeComponent();
+            Options.OptionsSaved += this.NewMenuOpened;
+            base.SideBarMenu_Click += this.NewMenuOpened;
+            Paused += FloatWindow.MainTrackerPaused;
+            FloatWindow.FloatPaused += this.Float_Click;
             base.startSessionButton.Text = "Home";
+        }
+
+        public FloatWindow FloatWindow
+        {
+            get
+            {
+                if (floater == null)
+                {
+                    floater = new FloatWindow();
+
+                }
+                return floater;
+            }
         }
 
         public static SessionManagerForm SessionManagerRef
@@ -48,6 +69,11 @@ namespace StudyTracker
         }
         private void SessionManagerForm_Load(object sender, EventArgs e)
         {
+            Screen screen = Screen.FromControl(this);
+            Rectangle area = screen.WorkingArea;
+
+            FloatWindow.Location = new Point(area.Width - FloatWindow.Width,
+                                                    area.Height - FloatWindow.Height);
             timerLabel.Parent = ClockImage;
             timerLabel.ForeColor = Color.FromArgb(120, 150, 170);
 
@@ -86,6 +112,17 @@ namespace StudyTracker
 
         private void pauseButton_Click(object sender, EventArgs e)
         {
+            OnPaused();
+            TogglePauseButtonText();
+        }
+
+        private void Float_Click(object sender, EventArgs e)
+        {
+            TogglePauseButtonText();
+        }
+
+        private void TogglePauseButtonText()
+        {
             shouldPause = !shouldPause;                     //toggle pause / start
             if (shouldPause)
             {
@@ -117,6 +154,7 @@ namespace StudyTracker
             }
             else
             {
+                finishedStudying = false;
                 stopWatch.Start();
                 topicLabel.Text = $"{NewStudyLog.Topic} for:";
                 topicLabel.Parent = WindowPanel;
@@ -127,6 +165,7 @@ namespace StudyTracker
 
         private void finishButton_Click(object sender, EventArgs e)
         {
+            finishedStudying = true;
             // Add End Time, End Date, Total time spent
             stopWatch.Stop();
 
@@ -166,14 +205,56 @@ namespace StudyTracker
         }
 
         // Overriding
-        new private void StartButton_Click(object obj, EventArgs e)
+        new public void StartButton_Click(object obj, EventArgs e)
         {
-            MessageBox.Show("Test");
+            // Label says Home, allow user to return to main menu, ask them if they are sure, their work wont' be saved until they click finsih button
+            DialogResult result = MessageBox.Show("Are you sure you want to return to Home?\nYour study session wont't be logged unless you click finish.",
+                    "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                // Stopping study, should stop showing floating window tracker.
+                finishedStudying = true;
+                StudyTrackerForm.StudyTracker.Show();
+                SessionManagerForm.SessionManagerRef.Hide();
+                StudyTrackerForm.StudyTracker.Location = SessionManagerForm.SessionManagerRef.Location;
+                StudyTrackerForm.StudyTracker.Focus();
+            }
         }
+
 
         private void SessionManagerForm_Deactivate(object sender, EventArgs e)
         {
+            if (Options.Settings.showFloatingWindow)
+            {
+                if (finishedStudying)
+                {
+                    FloatWindow.Hide();
+                }
+                else
+                {
 
+                    FloatWindow.Show();
+                }
+            }
+        }
+
+        private void SessionManagerForm_Activated(object sender, EventArgs e)
+        {
+            if (Options.Settings.showFloatingWindow && FloatWindow.Visible == true)
+            {
+                FloatWindow.Hide();
+            }
+        }
+
+        public void NewMenuOpened(object obj, EventArgs e)
+        {
+            FloatWindow.Hide();
+        }
+
+        public event EventHandler Paused;
+        protected virtual void OnPaused()
+        {
+            Paused?.Invoke(this, EventArgs.Empty);
         }
     }
 }

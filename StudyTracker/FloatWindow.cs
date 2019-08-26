@@ -12,9 +12,48 @@ namespace StudyTracker
 {
     public partial class FloatWindow : Form
     {
+        private bool paused = false;
+
         public FloatWindow()
         {
             InitializeComponent();
+        }
+
+        private void FloatWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+            if (e.CloseReason == CloseReason.ApplicationExitCall)
+            {
+                e.Cancel = false;
+            }
+        }
+
+        private void pauseButtonFloat_Click(object sender, EventArgs e)
+        {
+            toggleButtonText();
+            OnFloatPaused();
+        }
+
+        private void toggleButtonText()
+        {
+            paused = !paused;
+            if (paused)
+                pauseButtonFloat.Text = "RESUME";
+            else
+                pauseButtonFloat.Text = "PAUSE";
+        }
+
+        public void MainTrackerPaused(object sender, EventArgs e)
+        {
+            toggleButtonText();
+        }
+
+        public event EventHandler FloatPaused;
+
+        protected virtual void OnFloatPaused()
+        {
+            FloatPaused?.Invoke(this, EventArgs.Empty);
         }
     }
 }
