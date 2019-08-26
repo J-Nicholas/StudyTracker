@@ -27,7 +27,7 @@ namespace StudyTracker
             InitializeComponent();
             defaultDescriptionBoxFont = descriptionBox.Font;
             defaultDescriptionBoxTextColour = descriptionBox.ForeColor;
-            base.startButton.Text = "Return";
+            base.startSessionButton.Text = "Return";
 
         }
 

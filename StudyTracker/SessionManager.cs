@@ -27,7 +27,7 @@ namespace StudyTracker
         private SessionManagerForm()
         {
             InitializeComponent();
-            base.startButton.Text = "Home";
+            base.startSessionButton.Text = "Home";
         }
 
         public static SessionManagerForm SessionManagerRef

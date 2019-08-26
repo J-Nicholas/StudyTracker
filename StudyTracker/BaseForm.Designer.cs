@@ -40,7 +40,7 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.statsButton = new System.Windows.Forms.Button();
             this.logsButton = new System.Windows.Forms.Button();
-            this.startButton = new System.Windows.Forms.Button();
+            this.startSessionButton = new System.Windows.Forms.Button();
             this.bookButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DragWindow = new System.Windows.Forms.Panel();
@@ -196,24 +196,24 @@
             this.logsButton.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
             this.logsButton.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
             // 
-            // startButton
+            // startSessionButton
             // 
-            this.startButton.BackColor = System.Drawing.Color.Transparent;
-            this.startButton.BackgroundImage = global::StudyTracker.Properties.Resources.SideBar;
-            this.startButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.startButton.FlatAppearance.BorderSize = 0;
-            this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startButton.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.startButton.Location = new System.Drawing.Point(13, 218);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(181, 50);
-            this.startButton.TabIndex = 25;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = false;
-            this.startButton.Click += new System.EventHandler(this.StartButton_Click);
-            this.startButton.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
-            this.startButton.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
+            this.startSessionButton.BackColor = System.Drawing.Color.Transparent;
+            this.startSessionButton.BackgroundImage = global::StudyTracker.Properties.Resources.SideBar;
+            this.startSessionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.startSessionButton.FlatAppearance.BorderSize = 0;
+            this.startSessionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startSessionButton.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startSessionButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.startSessionButton.Location = new System.Drawing.Point(13, 218);
+            this.startSessionButton.Name = "startSessionButton";
+            this.startSessionButton.Size = new System.Drawing.Size(181, 50);
+            this.startSessionButton.TabIndex = 25;
+            this.startSessionButton.Text = "Start";
+            this.startSessionButton.UseVisualStyleBackColor = false;
+            this.startSessionButton.Click += new System.EventHandler(this.StartButton_Click);
+            this.startSessionButton.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
+            this.startSessionButton.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
             // 
             // bookButton
             // 
@@ -241,7 +241,7 @@
             this.panel1.Controls.Add(this.logsButton);
             this.panel1.Controls.Add(this.bookButton);
             this.panel1.Controls.Add(this.statsButton);
-            this.panel1.Controls.Add(this.startButton);
+            this.panel1.Controls.Add(this.startSessionButton);
             this.panel1.Controls.Add(this.exitButton);
             this.panel1.Controls.Add(this.linkToMyLinkdin);
             this.panel1.Controls.Add(this.aboutButton);
@@ -306,7 +306,7 @@
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button statsButton;
         private System.Windows.Forms.Button logsButton;
-        public System.Windows.Forms.Button startButton;
+        public System.Windows.Forms.Button startSessionButton;
         private System.Windows.Forms.Button bookButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel DragWindow;

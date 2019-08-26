@@ -40,7 +40,7 @@
             // 
             // startButton
             // 
-            this.startButton.FlatAppearance.BorderSize = 0;
+            this.startSessionButton.FlatAppearance.BorderSize = 0;
             // 
             // label1
             // 
