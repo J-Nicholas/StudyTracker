@@ -38,6 +38,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.AddLogButton)).BeginInit();
             this.SuspendLayout();
             // 
+            // startButton
+            // 
+            this.startButton.FlatAppearance.BorderSize = 0;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -67,7 +71,7 @@
             // 
             this.AddLogButton.BackgroundImage = global::StudyTracker.Properties.Resources.Add_Record;
             this.AddLogButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.AddLogButton.Location = new System.Drawing.Point(603, 99);
+            this.AddLogButton.Location = new System.Drawing.Point(602, 99);
             this.AddLogButton.Name = "AddLogButton";
             this.AddLogButton.Size = new System.Drawing.Size(25, 25);
             this.AddLogButton.TabIndex = 21;

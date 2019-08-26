@@ -265,7 +265,7 @@
         private System.Windows.Forms.Label topicLabel;
         private System.Windows.Forms.ComboBox topicComboBox;
         private System.Windows.Forms.Button deleteButton;
-        private System.Windows.Forms.Button startButton;
+        public System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Panel SetupPanel;
         private System.Windows.Forms.TextBox timeBox;
         private System.Windows.Forms.TextBox dateBox;

@@ -27,19 +27,7 @@ namespace StudyTracker
         private SessionManagerForm()
         {
             InitializeComponent();
-            startButtonLabelRef = StartLabelBaseRef;
-            startImageRef = StartImageRef;
-        }
-        public static PictureBox SessionManStartImageRef
-        {
-            get
-            {
-                if (startImageRef == null)
-                {
-                    startImageRef = BaseForm.StartImageRef;
-                }
-                return StartImageRef;
-            }
+            base.startButton.Text = "Home";
         }
 
         public static SessionManagerForm SessionManagerRef

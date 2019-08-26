@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Diagnostics;
 
+
 namespace StudyTracker
 {
     public partial class BaseForm : Form
@@ -25,6 +26,7 @@ namespace StudyTracker
         private static BaseForm baseFormRef;
         private static Label startLabelBaseRef;
         private static PictureBox startImageRef;
+        private static AboutStudyTracker aboutBox;
         private static bool IsFirstCloseFormCheck = true;
         public static bool IsStatsOpen = false;
 
@@ -35,54 +37,21 @@ namespace StudyTracker
             baseFormRef = this;
             this.DoubleBuffered = true;
 
-            SideBar_BookImage.Parent = SidebarImage;
-            Sidebar_TitleImage.Parent = SidebarImage;
-            linkToMyLinkdin.Parent = SidebarImage;
-
-            logsLabel.Parent = SidebarImage;
-            AboutLabel.Parent = SidebarImage;
-            ExitLabel.Parent = SidebarImage;
-
             CloseButtonImage.Parent = DragWindow;                                                               // location is now relatvie to dragwindow. so 
             CloseButtonImage.Location = new Point(DragWindow.Width - (CloseButtonImage.Width + 7), 3);          // button should be image.width number of pixels from 
             MinimiseButtonImage.Parent = DragWindow;                                                            // right + 7 for space and 3 from top
             MinimiseButtonImage.Location = new Point(CloseButtonImage.Location.X - MinimiseButtonImage.Width, CloseButtonImage.Location.Y);
-
-            AlignMenuBars(StartImage, SidebarImage);
-            AlignMenuBars(startLabel, StartImage);
-            AlignMenuBars(LogsImage, SidebarImage);
-            AlignMenuBars(logsLabel, LogsImage);
-            AlignMenuBars(AboutImage, SidebarImage);
-            AlignMenuBars(AboutLabel, AboutImage);
-            AlignMenuBars(ExitImage, SidebarImage);
-            AlignMenuBars(ExitLabel, ExitImage);
-            AlignMenuBars(StatisticsImage, SidebarImage);
-            AlignMenuBars(StatisticsLabel, StatisticsImage);
-
-            startLabelBaseRef = startLabel;
-            startImageRef = StartImage;
         }
 
-        public static Label StartLabelBaseRef
+        public static Form AboutBox
         {
             get
             {
-                if (startLabelBaseRef == null)
+                if (aboutBox == null)
                 {
-                    startLabelBaseRef = new Label();
+                    aboutBox = new AboutStudyTracker();
                 }
-                return startLabelBaseRef;
-            }
-        }
-        public static PictureBox StartImageRef
-        {
-            get
-            {
-                if (startImageRef == null)
-                {
-                    startImageRef = new PictureBox();
-                }
-                return startImageRef;
+                return aboutBox;
             }
         }
 
@@ -95,20 +64,6 @@ namespace StudyTracker
                 cp.ClassStyle |= CS_DBLCLKS;
                 //cp.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED
                 return cp;
-            }
-        }
-
-        private void AlignMenuBars<T>(T control, PictureBox parent) where T : Control
-        {
-            if (control is Label)
-            {
-                control.Parent = parent;
-                control.Location = new Point((parent.Width - control.Width) / 2, (parent.Height - control.Height) / 2);
-            }
-            else
-            {
-                control.Parent = parent;
-                control.Location = new Point((parent.Width - control.Width) / 2, control.Location.Y);
             }
         }
 
@@ -149,18 +104,17 @@ namespace StudyTracker
             Control control = (Control)sender;                                  // Parsing sender object into a control object so we can get information about the control
 
             //deals with mouseenter on exit label and exit image
-            if (control.Name == ExitLabel.Name || control.Name == ExitImage.Name)
+            if (control.Name == exitButton.Name)
             {
-                if (control.Name == ExitLabel.Name)
-                {
-                    control.Parent.BackgroundImage = Properties.Resources.ExitButtonSelected;
-                }
-                else
-                    control.BackgroundImage = Properties.Resources.ExitButtonSelected;
+                control.BackgroundImage = Properties.Resources.ExitButtonSelected;
                 return;
             }
             // otherwise its one of the menu images
             if (control is PictureBox)
+            {
+                control.BackgroundImage = Properties.Resources.ButtonSelected;
+            }
+            else if (control is Button)
             {
                 control.BackgroundImage = Properties.Resources.ButtonSelected;
             }
@@ -171,9 +125,13 @@ namespace StudyTracker
         private void StartImage_MouseLeave(object sender, EventArgs e)
         {
             Control control = (Control)sender;
-            if (control is PictureBox)
+            if (control is PictureBox )
             {
                 control.BackgroundImage = null;
+            }
+            else if (control is Button)
+            {
+                control.BackgroundImage = Properties.Resources.SideBar;
             }
             else if (control is Label)
             {
@@ -181,13 +139,9 @@ namespace StudyTracker
             }
         }
 
-        private void AboutImage_Click(object sender, EventArgs e)
+        private void AboutButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This application will track the time you spend studying and will log your studying sessions. " +
-                "Click Start to begin a session now! Or add a session manually by clicking the green plus symbol! " +
-                "You can view your most recent study sessions on the main screen or you can view them all by clicking " +
-                "“All logs” on the sidebar.\n ", "About",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            AboutBox.ShowDialog();
         }
 
         private void MinimiseButtonImage_Click(object sender, EventArgs e)
@@ -222,7 +176,7 @@ namespace StudyTracker
             IsDragging = false;
         }
 
-        private void StartImage_Click(object sender, EventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
 
             if (ActiveForm == SessionManagerForm.SessionManagerRef)
@@ -244,9 +198,9 @@ namespace StudyTracker
                 StudyTrackerForm.StudyTracker.Hide();
                 SessionSetupForm.SessionSetup.Location = this.Location;
                 SessionSetupForm.SessionSetup.Focus();
-                SessionSetupForm.SidebarLabelRef.Text = "Return";
-                SessionSetupForm.SidebarLabelRef.Location =                             //Centre the label text
-                    new Point((StartImage.Width - SessionSetupForm.SidebarLabelRef.Width) / 2, SessionSetupForm.SidebarLabelRef.Location.Y);
+                //SessionSetupForm.SidebarLabelRef.Text = "Return";
+                //SessionSetupForm.SidebarLabelRef.Location =                             //Centre the label text
+                   // new Point((StartImage.Width - SessionSetupForm.SidebarLabelRef.Width) / 2, SessionSetupForm.SidebarLabelRef.Location.Y);
             }
             else if (ActiveForm == SessionSetupForm.SessionSetup)
             {
@@ -306,7 +260,7 @@ namespace StudyTracker
             }
         }
 
-        private void LogsImage_Click(object sender, EventArgs e)
+        private void LogsButton_Click(object sender, EventArgs e)
         {
             if (LogData.StudyLogs.Count == 0)
             {
@@ -328,7 +282,7 @@ namespace StudyTracker
             }
         }
 
-        private void SideBar_BookImage_Click(object sender, EventArgs e)
+        private void StatisticsButton_Click(object sender, EventArgs e)
         {
             if (LogData.StudyLogs.Count == 0)
             {
@@ -353,3 +307,4 @@ namespace StudyTracker
         }
     }
 }
+

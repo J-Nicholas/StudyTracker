@@ -360,7 +360,6 @@ namespace StudyTracker
             this.DoubleBuffered = true;
             CenterWindow();
             studyTracker = this;
-            startButtonLabel = StartLabelBaseRef;
             this.RecentLogsContainer.MouseWheel += RecentLogsContainer_MouseScroll;
             RecentLogsContainer.AutoScroll = true;
             RecentLogsContainer.VerticalScroll.Enabled = true;

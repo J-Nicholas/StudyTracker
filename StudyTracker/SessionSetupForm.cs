@@ -27,19 +27,10 @@ namespace StudyTracker
             InitializeComponent();
             defaultDescriptionBoxFont = descriptionBox.Font;
             defaultDescriptionBoxTextColour = descriptionBox.ForeColor;
-            
+            base.startButton.Text = "Return";
+
         }
-        public static Label SidebarLabelRef
-        {
-            get
-            {
-                if (sidebarLabelRef == null)
-                {
-                    sidebarLabelRef = StartLabelBaseRef;
-                }
-                return sidebarLabelRef;
-            }
-        }
+
         public static SessionSetupForm SessionSetup
         {
             //form singleton, only allows one instance of a form and allows access to it from other classes

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("StudyTracker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This application will track the time you spend studying and will log your studying sessions. Click Start to begin a session now! Or add a session manually by clicking the green plus symbol! You can view your most recent study sessions on the main screen or you can view them all by clicking All logs on the sidebar")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("StudyTracker")]
