@@ -291,10 +291,7 @@ namespace StudyTracker
                 SessionManagerForm.SessionManagerRef.Show();
                 SessionManagerForm.SessionManagerRef.Location = this.Location;
                 SessionManagerForm.SessionManagerRef.Focus();
-                SessionManagerForm.startButtonLabelRef.Text = "Home";
-                SessionManagerForm.startButtonLabelRef.Location = new Point(            //centre Home in image box
-                        (SessionManagerForm.startImageRef.Width - SessionManagerForm.startButtonLabelRef.Width) / 2,
-                    SessionManagerForm.startButtonLabelRef.Location.Y);
+                
             }
         }
         private void SessionSetupForm_VisibleChanged(object sender, EventArgs e)

@@ -19,8 +19,7 @@ namespace StudyTracker
         private TimeSpan timeElapsed;
         public static Stopwatch stopWatch = new Stopwatch();
         public static StudyLog NewStudyLog { get; set; }
-        public static Label startButtonLabelRef;
-        public static PictureBox startImageRef;
+
         private static SessionManagerForm sessionManagerRef;
         private bool shouldPause = false;
 
@@ -163,6 +162,17 @@ namespace StudyTracker
             SessionManagerRef.Hide();
             StudyTrackerForm.StudyTracker.Location = this.Location;
             StudyTrackerForm.StudyTracker.Focus();
+
+        }
+
+        // Overriding
+        new private void StartButton_Click(object obj, EventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
+
+        private void SessionManagerForm_Deactivate(object sender, EventArgs e)
+        {
 
         }
     }

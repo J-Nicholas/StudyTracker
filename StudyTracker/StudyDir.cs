@@ -13,5 +13,6 @@ namespace StudyTracker
         public static string StudyTrackerDir { get; } = $"{ Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}" + @"\Study Tracker\";
         public static string TopicDir { get; } = StudyTrackerDir + "topics.txt";
         public static string logsDir { get; } = StudyTrackerDir + "logs.json";
+        public static string settingsDir { get; } = StudyTrackerDir + "settings.json";
     }
 }

@@ -117,6 +117,7 @@
             this.optionsButton.TabIndex = 20;
             this.optionsButton.Text = "Options";
             this.optionsButton.UseVisualStyleBackColor = false;
+            this.optionsButton.Click += new System.EventHandler(this.optionsButton_Click);
             this.optionsButton.MouseEnter += new System.EventHandler(this.StartImage_MouseEnter);
             this.optionsButton.MouseLeave += new System.EventHandler(this.StartImage_MouseLeave);
             // 

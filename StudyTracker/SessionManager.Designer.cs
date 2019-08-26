@@ -42,6 +42,11 @@
             this.WindowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
+            // startSessionButton
+            // 
+            this.startSessionButton.FlatAppearance.BorderSize = 0;
+            this.startSessionButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
             // timerLabel
             // 
             this.timerLabel.AutoSize = true;
@@ -154,6 +159,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SessionManagerForm";
             this.Text = "Study Tracker";
+            this.Deactivate += new System.EventHandler(this.SessionManagerForm_Deactivate);
             this.Load += new System.EventHandler(this.SessionManagerForm_Load);
             this.VisibleChanged += new System.EventHandler(this.SessionManagerForm_VisibleChanged);
             this.Controls.SetChildIndex(this.WindowPanel, 0);

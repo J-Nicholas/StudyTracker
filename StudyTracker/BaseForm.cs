@@ -27,6 +27,7 @@ namespace StudyTracker
         private static Label startLabelBaseRef;
         private static PictureBox startImageRef;
         private static AboutStudyTracker aboutBox;
+        private static OptionsMenu options;
         private static bool IsFirstCloseFormCheck = true;
         public static bool IsStatsOpen = false;
 
@@ -52,6 +53,18 @@ namespace StudyTracker
                     aboutBox = new AboutStudyTracker();
                 }
                 return aboutBox;
+            }
+        }
+
+        public static OptionsMenu Options
+        {
+            get
+            {
+                if (options == null)
+                {
+                    options = new OptionsMenu();
+                }
+                return options;
             }
         }
 
@@ -198,9 +211,7 @@ namespace StudyTracker
                 StudyTrackerForm.StudyTracker.Hide();
                 SessionSetupForm.SessionSetup.Location = this.Location;
                 SessionSetupForm.SessionSetup.Focus();
-                //SessionSetupForm.SidebarLabelRef.Text = "Return";
-                //SessionSetupForm.SidebarLabelRef.Location =                             //Centre the label text
-                   // new Point((StartImage.Width - SessionSetupForm.SidebarLabelRef.Width) / 2, SessionSetupForm.SidebarLabelRef.Location.Y);
+               
             }
             else if (ActiveForm == SessionSetupForm.SessionSetup)
             {
@@ -208,7 +219,7 @@ namespace StudyTracker
                 SessionSetupForm.SessionSetup.Hide();
                 StudyTrackerForm.StudyTracker.Location = SessionSetupForm.SessionSetup.Location;
                 StudyTrackerForm.StudyTracker.Focus();
-                StudyTrackerForm.StartButtonLabel.Text = "Start";
+                
             }
         }
 
@@ -304,6 +315,12 @@ namespace StudyTracker
                     StatsForm.StatsRef.Focus();
                 }
             }
+        }
+
+        private void optionsButton_Click(object sender, EventArgs e)
+        {
+            Options.ShowDialog();
+            
         }
     }
 }

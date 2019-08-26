@@ -407,7 +407,7 @@ namespace StudyTracker
 
         private void StudyTrackerForm_Load(object sender, EventArgs e)
         {
-
+            Options.readSettingsFile();
         }
         private void RecentLogsContainer_MouseScroll(object sender, MouseEventArgs e)
         {
