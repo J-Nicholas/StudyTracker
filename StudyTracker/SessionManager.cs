@@ -69,11 +69,11 @@ namespace StudyTracker
 
         private void timeElapsedTimer_Tick(object sender, EventArgs e)
         {
-            if (Debugger.IsAttached)
-            {
-                timeElapsedTimer.Enabled = false;
-                return;
-            }
+            //if (Debugger.IsAttached)
+            //{
+            //    timeElapsedTimer.Enabled = false;
+            //    return;
+            //}
 
             // Handle outputting time elapsed to label if button is not paused
             if (shouldPause == false)

@@ -19,10 +19,16 @@ namespace StudyTracker
         private FileStream file;
         private List<string> topicsFromFile = new List<string>();
         private static Label sidebarLabelRef = null;
+        private static Font defaultDescriptionBoxFont;
+        private static Color defaultDescriptionBoxTextColour;
 
         public SessionSetupForm()
         {
             InitializeComponent();
+            defaultDescriptionBoxFont = descriptionBox.Font;
+            defaultDescriptionBoxTextColour = descriptionBox.ForeColor;
+            descriptionBox.Font = new Font(defaultDescriptionBoxFont, FontStyle.Italic);
+            descriptionBox.ForeColor = SystemColors.ControlDarkDark;
         }
         public static Label SidebarLabelRef
         {
@@ -321,6 +327,14 @@ namespace StudyTracker
         private void startButton_MouseLeave(object sender, EventArgs e)
         {
             startButton.BackgroundImage = null;
+        }
+
+        private void descriptionBox_Enter(object sender, EventArgs e)
+        {
+            descriptionBox.Clear();
+            descriptionBox.ForeColor = defaultDescriptionBoxTextColour;
+            descriptionBox.Font = defaultDescriptionBoxFont;
+            
         }
     }
 }

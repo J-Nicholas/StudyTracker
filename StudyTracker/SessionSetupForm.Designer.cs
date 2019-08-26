@@ -97,7 +97,8 @@
             this.descriptionBox.Name = "descriptionBox";
             this.descriptionBox.Size = new System.Drawing.Size(280, 102);
             this.descriptionBox.TabIndex = 5;
-            this.descriptionBox.Text = "";
+            this.descriptionBox.Text = "What will you do this session?";
+            this.descriptionBox.Enter += new System.EventHandler(this.descriptionBox_Enter);
             // 
             // currentTimeTimer
             // 
