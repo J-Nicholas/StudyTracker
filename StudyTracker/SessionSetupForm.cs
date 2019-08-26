@@ -27,8 +27,7 @@ namespace StudyTracker
             InitializeComponent();
             defaultDescriptionBoxFont = descriptionBox.Font;
             defaultDescriptionBoxTextColour = descriptionBox.ForeColor;
-            descriptionBox.Font = new Font(defaultDescriptionBoxFont, FontStyle.Italic);
-            descriptionBox.ForeColor = SystemColors.ControlDarkDark;
+            
         }
         public static Label SidebarLabelRef
         {
@@ -313,11 +312,21 @@ namespace StudyTracker
             {
                 dateBox.Text = DateTime.Today.ToShortDateString();
                 timeBox.Text = DateTime.Now.ToLongTimeString();
+
+                // Description Box
+                descriptionBox.Font = new Font(defaultDescriptionBoxFont, FontStyle.Italic);
+                descriptionBox.ForeColor = SystemColors.ControlDarkDark;
+                this.ActiveControl = null;   //getting the focus away from description box if it has focus so that it will clear on Enter
             }
             else
             {
                 topicComboBox.Text = string.Empty;
-                descriptionBox.Text = string.Empty;
+
+                // Description box
+                descriptionBox.Text = "What will you do this session?";
+                descriptionBox.ForeColor = defaultDescriptionBoxTextColour;
+                descriptionBox.Font = defaultDescriptionBoxFont;
+                
             }
         }
         private void startButton_MouseEnter(object sender, EventArgs e)
