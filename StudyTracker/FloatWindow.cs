@@ -69,6 +69,7 @@ namespace StudyTracker
         public void ResetButton(object sender, EventArgs e)
         {
             pauseButtonFloat.Text = "PAUSE";
+            paused = false;
         }
 
         public event EventHandler FloatPaused;
