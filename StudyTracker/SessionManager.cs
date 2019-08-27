@@ -238,7 +238,7 @@ namespace StudyTracker
                 {
                     FloatWindow.Hide();
                 }
-                else if(this != Form.ActiveForm)
+                else
                 {
                     FloatWindow.Show();
                 }
@@ -247,12 +247,13 @@ namespace StudyTracker
 
         private void SessionManagerForm_Activated(object sender, EventArgs e)
         {
+            this.Activate(); // needed to give Session window focus, params set in floating window seems 
+                             // to stop this window from being active form.
             if (Options.Settings.showFloatingWindow)
             {
-                if (this == Form.ActiveForm)
-                {
+                if(this == ActiveForm)
                     FloatWindow.Hide();
-                }
+
             }
         }
 
