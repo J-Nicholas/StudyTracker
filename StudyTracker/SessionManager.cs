@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Drawing.Text;
 using Newtonsoft.Json;
 using System.IO;
-
+using System.Threading;
 
 namespace StudyTracker
 {
@@ -23,6 +23,8 @@ namespace StudyTracker
         private FloatWindow floater;
         public static Stopwatch stopWatch = new Stopwatch();
         public static StudyLog NewStudyLog { get; set; }
+        private int activateCount = 0;
+        private int deactivateCount = 0;
 
 
         private static SessionManagerForm sessionManagerRef;
@@ -34,6 +36,7 @@ namespace StudyTracker
             base.SideBarMenu_Click += this.NewMenuOpened;
             Paused += FloatWindow.MainTrackerPaused;
             FloatWindow.FloatPaused += this.Float_Click;
+            FinishedStudying += FloatWindow.ResetButton;
             base.startSessionButton.Text = "Home";
         }
 
@@ -69,11 +72,13 @@ namespace StudyTracker
         }
         private void SessionManagerForm_Load(object sender, EventArgs e)
         {
+            // Placing floating button in bottom right of user's screen
             Screen screen = Screen.FromControl(this);
             Rectangle area = screen.WorkingArea;
 
             FloatWindow.Location = new Point(area.Width - FloatWindow.Width,
                                                     area.Height - FloatWindow.Height);
+            // setting up clock position and colour
             timerLabel.Parent = ClockImage;
             timerLabel.ForeColor = Color.FromArgb(120, 150, 170);
 
@@ -166,6 +171,7 @@ namespace StudyTracker
         private void finishButton_Click(object sender, EventArgs e)
         {
             finishedStudying = true;
+            OnFinishedStudying();
             // Add End Time, End Date, Total time spent
             stopWatch.Stop();
 
@@ -214,6 +220,7 @@ namespace StudyTracker
             {
                 // Stopping study, should stop showing floating window tracker.
                 finishedStudying = true;
+                OnFinishedStudying();
                 StudyTrackerForm.StudyTracker.Show();
                 SessionManagerForm.SessionManagerRef.Hide();
                 StudyTrackerForm.StudyTracker.Location = SessionManagerForm.SessionManagerRef.Location;
@@ -224,15 +231,16 @@ namespace StudyTracker
 
         private void SessionManagerForm_Deactivate(object sender, EventArgs e)
         {
+            deactivateCount++;
+            Console.WriteLine("Enter Deactivate "+ deactivateCount);
             if (Options.Settings.showFloatingWindow)
             {
                 if (finishedStudying)
                 {
                     FloatWindow.Hide();
                 }
-                else
+                else if(this != Form.ActiveForm)
                 {
-
                     FloatWindow.Show();
                 }
             }
@@ -240,9 +248,16 @@ namespace StudyTracker
 
         private void SessionManagerForm_Activated(object sender, EventArgs e)
         {
-            if (Options.Settings.showFloatingWindow && FloatWindow.Visible == true)
+            // When user clicks on taskmanager icon when app has focus, Deactivate is called and then Activate before 
+            // Actually hiding.
+            activateCount++;
+            Console.WriteLine("Entering Activate " + activateCount);
+            if (Options.Settings.showFloatingWindow)
             {
-                FloatWindow.Hide();
+                if (this == Form.ActiveForm)
+                {
+                    FloatWindow.Hide();
+                }
             }
         }
 
@@ -251,10 +266,17 @@ namespace StudyTracker
             FloatWindow.Hide();
         }
 
+        #region Events
         public event EventHandler Paused;
         protected virtual void OnPaused()
         {
             Paused?.Invoke(this, EventArgs.Empty);
         }
+        public event EventHandler FinishedStudying;
+        protected virtual void OnFinishedStudying()
+        {
+            FinishedStudying?.Invoke(this, EventArgs.Empty);
+        }
+        #endregion
     }
 }

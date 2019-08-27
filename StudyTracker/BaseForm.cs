@@ -24,8 +24,7 @@ namespace StudyTracker
         private Point lastLocation;
 
         private static BaseForm baseFormRef;
-        private static Label startLabelBaseRef;
-        private static PictureBox startImageRef;
+
         private static AboutStudyTracker aboutBox;
         private static OptionsMenu options;
         private static bool IsFirstCloseFormCheck = true;

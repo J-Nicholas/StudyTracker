@@ -19,6 +19,17 @@ namespace StudyTracker
             InitializeComponent();
         }
 
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams createParams = base.CreateParams;
+                createParams.ExStyle |= WS_EX_NOACTIVATE;
+                return createParams;
+            }
+        }
+
         private void FloatWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
@@ -47,6 +58,11 @@ namespace StudyTracker
         public void MainTrackerPaused(object sender, EventArgs e)
         {
             toggleButtonText();
+        }
+
+        public void ResetButton(object sender, EventArgs e)
+        {
+            pauseButtonFloat.Text = "PAUSE";
         }
 
         public event EventHandler FloatPaused;
