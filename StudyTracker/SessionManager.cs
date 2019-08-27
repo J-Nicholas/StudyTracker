@@ -231,8 +231,7 @@ namespace StudyTracker
 
         private void SessionManagerForm_Deactivate(object sender, EventArgs e)
         {
-            deactivateCount++;
-            Console.WriteLine("Enter Deactivate "+ deactivateCount);
+
             if (Options.Settings.showFloatingWindow)
             {
                 if (finishedStudying)
@@ -248,10 +247,6 @@ namespace StudyTracker
 
         private void SessionManagerForm_Activated(object sender, EventArgs e)
         {
-            // When user clicks on taskmanager icon when app has focus, Deactivate is called and then Activate before 
-            // Actually hiding.
-            activateCount++;
-            Console.WriteLine("Entering Activate " + activateCount);
             if (Options.Settings.showFloatingWindow)
             {
                 if (this == Form.ActiveForm)

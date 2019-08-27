@@ -20,6 +20,12 @@ namespace StudyTracker
         }
 
         private const int WS_EX_NOACTIVATE = 0x08000000;
+        /// <summary>
+        /// This is required for this window so that when the user clicks on app icon on taskbar
+        /// the floating window does not get focus. This stops the main window from closing because 
+        /// another Activate event is fired. Which must be because Float window is contained inside main
+        /// window.
+        /// </summary>
         protected override CreateParams CreateParams
         {
             get
