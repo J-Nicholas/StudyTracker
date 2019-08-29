@@ -20,7 +20,8 @@ namespace StudyTracker
         #region RecentLogPanels
         private const int maxRecentLogs = 8;                                // Controls max recent logs that can appear on main menu
         private Size logPanelDimensions = new Size(400, 105);
-
+        private TimeSpan timePassed;
+        private TimeSpan daysPassed;
 
         private static Point initialLogPos;
         private static List<Panel> panels = new List<Panel>();
@@ -259,9 +260,10 @@ namespace StudyTracker
                 dateStudiedValue[i].BackColor = Color.Transparent;
                 dateStudiedValue[i].Font = new Font("Lucidia Bright", fontSize, FontStyle.Italic, GraphicsUnit.Point);
                 dateStudiedValue[i].Location = new Point(durationValue[i].Location.X, durationValue[i].Location.Y + spacing - 10);
+                daysPassed = DateTime.Now.Date.Subtract(LogData.StudyLogs[i].StartDate);
                 if (LogData.StudyLogs[i].EndDate.Day == DateTime.Now.Day)
                 {
-                    var timePassed = DateTime.Now.TimeOfDay.Subtract(LogData.StudyLogs[i].EndTime.TimeOfDay);
+                    timePassed = DateTime.Now.TimeOfDay.Subtract(LogData.StudyLogs[i].EndTime.TimeOfDay);
 
                     if (timePassed.Minutes == 0 && timePassed.Hours < 1)
                     {
@@ -276,9 +278,14 @@ namespace StudyTracker
                     {
                         dateStudiedValue[i].Text = $"{timePassed.Hours} hours and {timePassed.Minutes} minutes ago.";
                     }
+                    
                 }
-                else
-                    dateStudiedValue[i].Text = $"{LogData.StudyLogs[i].EndDate.ToShortDateString()}";
+                else if (daysPassed.Days == 1)
+                {
+                    dateStudiedValue[i].Text = $"Yesterday, {LogData.StudyLogs[i].StartDate.ToShortDateString()}";
+                }
+                else 
+                    dateStudiedValue[i].Text = $"{LogData.StudyLogs[i].StartDate.DayOfWeek}, {LogData.StudyLogs[i].StartDate.ToShortDateString()}";
 
                 //----------------------------------------//
 
@@ -487,13 +494,15 @@ namespace StudyTracker
             {
                 RefreshRecentLogs.Enabled = true;
             }
+
             if (ActiveForm == StudyTracker && EditRecentLog.EditLogRef.Visible == false)
             {
                 for (int i = 0; i < dateStudiedValue.Count; i++)
                 {
+                    daysPassed = DateTime.Now.Date.Subtract(LogData.StudyLogs[i].StartDate);
                     if (LogData.StudyLogs[i].EndDate.Day == DateTime.Now.Day)
                     {
-                        var timePassed = DateTime.Now.Subtract(LogData.StudyLogs[i].EndDate);
+                        timePassed = DateTime.Now.Subtract(LogData.StudyLogs[i].EndDate);
 
                         if (timePassed.Minutes == 0 && timePassed.Hours < 1)
                         {
@@ -509,8 +518,12 @@ namespace StudyTracker
                             dateStudiedValue[i].Text = $"{timePassed.Hours} hours and {timePassed.Minutes} minutes ago.";
                         }
                     }
+                    else if (daysPassed.Days == 1)
+                    {
+                        dateStudiedValue[i].Text = $"Yesterday, {LogData.StudyLogs[i].StartDate.ToShortDateString()}";
+                    }
                     else
-                        dateStudiedValue[i].Text = $"{LogData.StudyLogs[i].EndDate.ToShortDateString()}";
+                        dateStudiedValue[i].Text = $"{LogData.StudyLogs[i].StartDate.DayOfWeek}, {LogData.StudyLogs[i].StartDate.ToShortDateString()}";
                 }
             }
            
